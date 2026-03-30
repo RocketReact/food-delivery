@@ -116,6 +116,12 @@
     font-size: 0.9rem;
 }
 
+@media (max-width: 767px) {
+    .sideCategory {
+        display: none;
+    }
+}
+
 @media (min-width: 768px) {
     .mobileCategories {
         display: none;
@@ -123,11 +129,12 @@
 
     .sideCategory {
         display: flex;
+        width: 250px;
     }
 }
 
-@media (max-width: 767px) {
+@media (min-width: 1024px) {
     .sideCategory {
-        display: none;
+        width: 300px;
     }
 }
