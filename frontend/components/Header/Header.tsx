@@ -10,6 +10,7 @@ import {
 import React from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import Link from 'next/link'
+
 export default function Header() {
   const [isOpen, setIsOpen] = React.useState(false)
 
@@ -20,15 +21,10 @@ export default function Header() {
   return (
     <header className={css.header}>
       <div className={css.headerContainer}>
-        <div className={css.logoDiv}>
-          <Link href='/'>
-            <Image src={icon} height={40} alt='logo' priority />
-          </Link>
-        </div>
         <button
           onClick={toggleMenu}
           className={css.burgerBtn}
-          aria-label='toggle-menu'
+          aria-label="toggle-menu"
         >
           <div className={css.iconContainer}>
             <HiOutlineX
@@ -41,6 +37,11 @@ export default function Header() {
             />
           </div>
         </button>
+        <div className={css.logoDiv}>
+          <Link href="/">
+            <Image src={icon} height={40} alt="logo" priority />
+          </Link>
+        </div>
       </div>
       <AnimatePresence>
         {isOpen && (
@@ -54,16 +55,16 @@ export default function Header() {
             />
 
             <motion.nav
-              initial={{ x: '100%' }}
+              initial={{ x: '-100%' }}
               animate={{ x: 0 }}
-              exit={{ x: '100%' }}
+              exit={{ x: '-100%' }}
               transition={{ type: 'tween' }}
               className={css.menu}
             >
               <ul className={css.mobileMenuTextContainer}>
                 <li>
                   <Link
-                    href='/'
+                    href="/"
                     className={css.mobileMenuText}
                     onClick={toggleMenu}
                   >
@@ -72,7 +73,7 @@ export default function Header() {
                 </li>
                 <li>
                   <Link
-                    href='/cart'
+                    href="/cart"
                     className={css.mobileMenuText}
                     onClick={toggleMenu}
                   >
