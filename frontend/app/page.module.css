@@ -1,0 +1,41 @@
+.grid {
+    display: grid;
+    gap: 1rem;
+    padding: 1rem;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.imageWrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3/2;
+}
+
+
+.product {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.75rem;
+    border-radius: 12px;
+    background: #f9f9f9;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.product:hover {
+    transform: translateY(-4px);
+}
+
+.product img {
+    border-radius: 8px;
+    object-fit: cover;
+    width: 100%;
+    height: auto;
+}
+
+.product p {
+    margin: 0;
+    font-size: 0.9rem;
+}
