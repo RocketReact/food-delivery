@@ -18,10 +18,12 @@ export default function Header() {
     document.body.style.overflow = !isOpen ? 'hidden' : 'unset'
   }
   return (
-    <header>
-      <div className={css.header}>
+    <header className={css.header}>
+      <div className={css.headerContainer}>
         <div className={css.logoDiv}>
-          <Image src={icon} height={40} alt='logo' />
+          <Link href='/'>
+            <Image src={icon} height={40} alt='logo' priority />
+          </Link>
         </div>
         <button
           onClick={toggleMenu}

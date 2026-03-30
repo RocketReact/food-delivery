@@ -1,4 +1,8 @@
 .header {
+    border-bottom: solid 1px #efefef;
+}
+
+.headerContainer {
     width: 100%;
     display: flex;
     justify-content: space-between;
