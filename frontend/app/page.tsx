@@ -24,6 +24,9 @@ export default async function Home() {
             </div>
             <p>{product.name}</p>
             <p>{product.price}$</p>
+            <button className={css.buyBtn}>
+              Add to Cart
+            </button>
           </div>
         ))}
       </div>

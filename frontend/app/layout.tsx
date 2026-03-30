@@ -16,19 +16,19 @@ const nunito = Nunito({
 })
 
 export default function RootLayout({
-  children,
-}: Readonly<{
+                                     children,
+                                   }: Readonly<{
   children: React.ReactNode
 }>) {
   return (
-    <html lang='en'>
-      <body className={nunito.className}>
-        <Header />
-        <Container>
-          <main>{children}</main>
-          <Footer />
-        </Container>
-      </body>
+    <html lang="en">
+    <body className={nunito.className}>
+    <Container>
+      <Header />
+      <main>{children}</main>
+      <Footer />
+    </Container>
+    </body>
     </html>
   )
 }
