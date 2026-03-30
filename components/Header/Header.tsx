@@ -15,7 +15,9 @@ export default function Header() {
   return (
     <header>
       <div className={css.header}>
-        <Image src={icon} height={60} alt='logo' />
+        <div className={css.logoDiv}>
+          <Image src={icon} height={40} alt='logo' />
+        </div>
         <button
           onClick={toggleMenu}
           className={css.burgerBtn}

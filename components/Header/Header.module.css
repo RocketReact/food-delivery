@@ -5,11 +5,16 @@
     align-items: center;
 }
 
+.logoDiv {
+    padding: 15px 20px;
+}
+
 .burgerBtn {
     background: none;
     border: none;
     cursor: pointer;
     color: #656565;
+    padding: 20px;
 }
 
 .iconContainer {
