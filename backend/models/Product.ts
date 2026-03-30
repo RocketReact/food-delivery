@@ -1,6 +1,6 @@
-import { Schema, model, models } from "mongoose";
+import { Schema, model, models, Types } from "mongoose";
 
-export const CATEGORIES = ["Burgers", "Drinks", "Desserts"] as const;
+export const CATEGORIES = ["Burgers", "Drinks", "Desserts", "Pizza", "Pasta", "Salads", "Seafood"] as const;
 export type CategoryType = typeof CATEGORIES[number];
 
 export interface ProductType {
@@ -9,6 +9,8 @@ export interface ProductType {
   price: number;
   image: string;
   category: CategoryType;
+  storeId?: Types.ObjectId;
+  storeName?: string;
 }
 
 export const ProductSchema = new Schema<ProductType>(
@@ -33,8 +35,15 @@ export const ProductSchema = new Schema<ProductType>(
       required: [true, "Category is required"],
       enum: {
         values: CATEGORIES,
-        message: "Category must be one of: Burgers, Drinks, Desserts"
+        message: "Category must be one of: " + CATEGORIES.join(", ")
       }
+    },
+    storeId: {
+      type: Schema.Types.ObjectId,
+      ref: "Store"
+    },
+    storeName: {
+      type: String
     }
   },
   {

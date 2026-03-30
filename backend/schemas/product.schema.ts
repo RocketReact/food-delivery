@@ -6,5 +6,7 @@ export const productSchema = z.object({
   description: z.string().optional(),
   image: z.string().min(1),
   price: z.number().positive(),
-  category: z.enum(CATEGORIES)
+  category: z.enum(CATEGORIES),
+  storeId: z.string().optional(),
+  storeName: z.string().optional()
 });
