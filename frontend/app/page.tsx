@@ -13,8 +13,17 @@ export default async function Home({
     : `${process.env.URL_SERVER}/products`
   const products = await fetch(url).then(r => r.json())
 
+  const categories = ['Burgers', 'Drinks', 'Desserts']
+
   return (
     <>
+      <div className={css.mobileCategories}>
+        {categories.map(cat => (
+          <Link key={cat} href={`?category=${cat}`} className={css.mobileCategoryLink}>
+            {cat}
+          </Link>
+        ))}
+      </div>
       <div className={css.mainHomeContainer}>
         <div className={css.sideCategory}>
           <ul className={css.categorySideTextWrap}>
