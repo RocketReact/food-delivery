@@ -1,21 +1,33 @@
 import Image from 'next/image'
 import css from './page.module.css'
+import Link from 'next/link'
 
-async function getProducts() {
-  const res = await fetch('http://localhost:5001/products')
-  return res.json()
-}
+export default async function Home({
+                                     searchParams,
+                                   }: {
+  searchParams: Promise<{ category?: string }>
+}) {
+  const { category } = await searchParams
+  const url = category
+    ? `${process.env.URL_SERVER}/products?category=${category}`
+    : `${process.env.URL_SERVER}/products`
+  const products = await fetch(url).then(r => r.json())
 
-export default async function Home() {
-  const products = await getProducts()
   return (
     <>
       <div className={css.mainHomeContainer}>
         <div className={css.sideCategory}>
           <ul className={css.categorySideTextWrap}>
-            <li>Burgers</li>
-            <li>Drinks</li>
-            <li>Desserts</li>
+            <Link href="?category=Burgers">
+              <li>Burgers</li>
+            </Link>
+            <Link href="?category=Drinks">
+              <li>Drinks</li>
+            </Link>
+            <Link href="?category=Desserts">
+              <li>Desserts</li>
+            </Link>
+
             <li>Sushi</li>
             <li>Rolls</li>
             <li>Soups</li>

@@ -13,6 +13,8 @@ export const createProduct = async (req: Request, res: Response) => {
 };
 
 export const getProducts = async (req: Request, res: Response) => {
-  const products = await Product.find();
+  const { category } = req.query;
+  const filter = category ? { category } : {};
+  const products = await Product.find(filter);
   res.status(200).json(products);
 };
