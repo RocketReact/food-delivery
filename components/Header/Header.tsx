@@ -2,9 +2,14 @@
 import css from './Header.module.css'
 import Image from 'next/image'
 import icon from '../../public/logo-delivery.png'
-import { HiOutlineMenu, HiOutlineX } from 'react-icons/hi'
+import {
+  HiOutlineMenu,
+  HiOutlineX,
+  HiOutlineShoppingCart,
+} from 'react-icons/hi'
 import React from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
+import Link from 'next/link'
 export default function Header() {
   const [isOpen, setIsOpen] = React.useState(false)
 
@@ -53,9 +58,26 @@ export default function Header() {
               transition={{ type: 'tween' }}
               className={css.menu}
             >
-              <ul>
-                <li>Shop</li>
-                <li>Cart</li>
+              <ul className={css.mobileMenuTextContainer}>
+                <li>
+                  <Link
+                    href='/'
+                    className={css.mobileMenuText}
+                    onClick={toggleMenu}
+                  >
+                    Shop
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href='/cart'
+                    className={css.mobileMenuText}
+                    onClick={toggleMenu}
+                  >
+                    Shopping Cart
+                    <HiOutlineShoppingCart />
+                  </Link>
+                </li>
               </ul>
             </motion.nav>
           </>
