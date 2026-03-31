@@ -14,7 +14,6 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: '#ffffff',
-  viewportFit: 'cover',
 }
 
 const nunito = Nunito({
