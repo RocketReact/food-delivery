@@ -5,20 +5,6 @@
     overflow: hidden;
 }
 
-.sideCategory {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: #f3f3f3;
-    width: 330px;
-    border-radius: 10px;
-    flex-shrink: 0;
-    position: sticky;
-    top: 0;
-    align-self: flex-start;
-    height: 100%;
-}
-
 .grid {
     display: grid;
     gap: 1rem;
@@ -34,7 +20,6 @@
     width: 100%;
     aspect-ratio: 3/2;
 }
-
 
 .product {
     display: flex;
@@ -78,25 +63,7 @@
     cursor: pointer;
 }
 
-.categorySideTextWrap {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    align-items: center;
-    margin-top: 40px;
-
-}
-
-.categorySideTextWrap > * {
-    cursor: pointer;
-    padding: 1rem 3rem;
-}
-
-.categorySideTextWrap > * {
-    cursor: pointer;
-}
-
-.mobileCategories {
+.mobileShops {
     display: flex;
     gap: 0.5rem;
     overflow-x: auto;
@@ -104,11 +71,11 @@
     scrollbar-width: none;
 }
 
-.mobileCategories::-webkit-scrollbar {
+.mobileShops::-webkit-scrollbar {
     display: none;
 }
 
-.mobileCategoryLink {
+.mobileShopsLink {
     white-space: nowrap;
     padding: 0.5rem 1rem;
     border-radius: 50px;
@@ -116,25 +83,65 @@
     font-size: 0.9rem;
 }
 
+.sideShops {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #f3f3f3;
+    width: 330px;
+    border-radius: 10px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    align-self: flex-start;
+    height: 100%;
+}
+
+.active {
+    background: #e8e8e8;
+}
+
+.shopsSideTextWrap {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.shopsSideTextWrap > * {
+    cursor: pointer;
+    padding: 1rem 3rem;
+}
+
+.shopsSideTextWrap > * {
+    cursor: pointer;
+}
+
 @media (max-width: 767px) {
-    .sideCategory {
+    .sideShops {
         display: none;
     }
 }
 
 @media (min-width: 768px) {
-    .mobileCategories {
+    .mobileShops {
         display: none;
     }
 
-    .sideCategory {
+    .sideShops {
         display: flex;
         width: 250px;
+    }
+
+    .titleShops {
+        margin-top: 30px;
+        font-size: 1.3rem;
     }
 }
 
 @media (min-width: 1024px) {
-    .sideCategory {
+    .sideShops {
         width: 300px;
     }
 }
