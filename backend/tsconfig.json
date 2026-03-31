@@ -3,6 +3,8 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "module": "CommonJS",
-    "target": "ESNext"
+    "target": "ESNext",
+    "rootDir": ".",
+    "noEmit": true
   }
 }

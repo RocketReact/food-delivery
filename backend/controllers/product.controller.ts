@@ -13,8 +13,10 @@ export const createProduct = async (req: Request, res: Response) => {
 };
 
 export const getProducts = async (req: Request, res: Response) => {
-  const { category } = req.query;
-  const filter = category ? { category } : {};
-  const products = await Product.find(filter);
+  const { storeName, category } = req.query;
+  const filter: Record<string, unknown> = {};
+  if (storeName) filter.storeName = storeName;
+  if (category) filter.category = category;
+  const products = await Product.find(filter).limit(20).lean();
   res.status(200).json(products);
 };
