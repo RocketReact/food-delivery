@@ -44,10 +44,10 @@ export default function Cart() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-        customer: data,
-        items: items.map(({ productId, ...rest }) => ({ id: productId, ...rest })),
-        totalPrice: total,
-      }),
+          customer: data,
+          items: items.map(({ productId, ...rest }) => ({ id: productId, ...rest })),
+          totalPrice: total,
+        }),
       })
       if (!res.ok) throw new Error()
       toast.success('Order placed! We will contact you shortly.', { duration: 6000 })
@@ -76,7 +76,9 @@ export default function Cart() {
                   <p>{i.name}</p>
                   <p>{i.price}$</p>
                   <div className={css.qty}>
-                    <button onClick={() => i.quantity === 1 ? removeFromCart(i.productId) : updateQuantity(i.productId, i.quantity - 1)}>−</button>
+                    <button
+                      onClick={() => i.quantity === 1 ? removeFromCart(i.productId) : updateQuantity(i.productId, i.quantity - 1)}>−
+                    </button>
                     <input
                       type="number"
                       min={1}

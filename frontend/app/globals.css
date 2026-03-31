@@ -17,6 +17,8 @@ body {
     background-color: #fff;
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
 
     img {
         border-radius: 10px;
