@@ -2,6 +2,20 @@
 import css from './page.module.css'
 import { useCartStore } from '../../store/cartStore'
 import Image from 'next/image'
+import { useEffect } from 'react'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { z } from 'zod'
+import toast from 'react-hot-toast'
+
+const orderSchema = z.object({
+  name: z.string().min(2, { error: 'Min 2 characters' }),
+  email: z.email({ error: 'Invalid email' }),
+  phone: z.string().min(7, { error: 'Invalid phone' }),
+  address: z.string().min(5, { error: 'Min 5 characters' }),
+})
+
+type OrderForm = z.infer<typeof orderSchema>
 
 export default function Cart() {
   const items = useCartStore(s => s.items)
@@ -9,6 +23,40 @@ export default function Cart() {
   const updateQuantity = useCartStore(s => s.updateQuantity)
   const removeFromCart = useCartStore(s => s.removeFromCart)
   const total = items.reduce((sum, i) => sum + i.price * i.quantity, 0)
+
+  const saved = typeof window !== 'undefined'
+    ? JSON.parse(localStorage.getItem('order-form') || '{}')
+    : {}
+
+  const { register, handleSubmit, watch, formState: { errors } } = useForm<OrderForm>({
+    resolver: zodResolver(orderSchema),
+    defaultValues: saved,
+  })
+
+  const formValues = watch()
+  useEffect(() => {
+    localStorage.setItem('order-form', JSON.stringify(formValues))
+  }, [formValues])
+
+  const onSubmit = async (data: OrderForm) => {
+    try {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_URL_SERVER}/orders`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+        customer: data,
+        items: items.map(({ productId, ...rest }) => ({ id: productId, ...rest })),
+        totalPrice: total,
+      }),
+      })
+      if (!res.ok) throw new Error()
+      toast.success('Order placed! We will contact you shortly.', { duration: 6000 })
+      clearCart()
+    } catch {
+      toast.error('Failed to place order')
+    }
+  }
+
   return (
     <div className={css.cartContainer}>
       <div className={css.itemsCol}>
@@ -50,13 +98,27 @@ export default function Cart() {
           </>
         )}
       </div>
-      {items.length === 0 ? '' : (<div className={css.formCol}>
-        <input placeholder="Name" />
-        <input placeholder="Email" />
-        <input placeholder="Phone" />
-        <input placeholder="Address" />
-        <button className={css.clearBtn}>Submit</button>
-      </div>)}
+      {items.length > 0 && (
+        <form className={css.formCol} onSubmit={handleSubmit(onSubmit)}>
+          <div>
+            <input placeholder="Name" {...register('name')} />
+            {errors.name && <p className={css.error}>{errors.name.message}</p>}
+          </div>
+          <div>
+            <input placeholder="Email" {...register('email')} />
+            {errors.email && <p className={css.error}>{errors.email.message}</p>}
+          </div>
+          <div>
+            <input placeholder="Phone" {...register('phone')} />
+            {errors.phone && <p className={css.error}>{errors.phone.message}</p>}
+          </div>
+          <div>
+            <input placeholder="Address" {...register('address')} />
+            {errors.address && <p className={css.error}>{errors.address.message}</p>}
+          </div>
+          <button type="submit" className={css.clearBtn}>Submit</button>
+        </form>
+      )}
     </div>
   )
 }

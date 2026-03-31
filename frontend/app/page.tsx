@@ -22,7 +22,7 @@ export default async function Home({
   if (category) params.set('category', category)
 
   const query = params.toString()
-  const url = `${process.env.URL_SERVER}/products${query ? `?${query}` : ''}`
+  const url = `${process.env.NEXT_PUBLIC_URL_SERVER}/products${query ? `?${query}` : ''}`
 
   let products: Product[] = []
 
