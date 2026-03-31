@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import './globals.css'
 import Header from '../components/Header/Header'
 import Footer from '../components/Footer/Footer'
@@ -10,6 +10,10 @@ import { Toaster } from 'react-hot-toast'
 export const metadata: Metadata = {
   title: 'Food delivery shop',
   description: 'Order food online any time',
+}
+
+export const viewport: Viewport = {
+  themeColor: '#ffffff',
 }
 
 const nunito = Nunito({
