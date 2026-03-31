@@ -13,10 +13,23 @@ export const createProduct = async (req: Request, res: Response) => {
 };
 
 export const getProducts = async (req: Request, res: Response) => {
-  const { storeName, category } = req.query;
-  const filter: Record<string, unknown> = {};
-  if (storeName) filter.storeName = storeName;
-  if (category) filter.category = category;
-  const products = await Product.find(filter).limit(20).lean();
-  res.status(200).json(products);
+  try {
+    const { storeName, category } = req.query;
+    const filter: Record<string, unknown> = {};
+    if (storeName) filter.storeName = storeName;
+    if (category) filter.category = category;
+    const products = await Product.find(filter).limit(20).lean();
+    res.status(200).json(products);
+  } catch (error) {
+    res.status(500).json({ message: "Failed to fetch products" });
+  }
+};
+
+export const getShops = async (req: Request, res: Response) => {
+  try {
+    const shops = await Product.distinct("storeName");
+    res.status(200).json(shops);
+  } catch (error) {
+    res.status(500).json({ message: "Failed to fetch shops" });
+  }
 };
