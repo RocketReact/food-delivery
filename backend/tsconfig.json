@@ -5,6 +5,7 @@
     "module": "CommonJS",
     "target": "ESNext",
     "rootDir": ".",
-    "noEmit": true
+    "noEmit": false,
+    "outDir": "dist"
   }
 }
