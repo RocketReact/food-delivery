@@ -12,7 +12,7 @@ type CartItem = {
 type CartStore = {
   items: CartItem[],
   addToCart: (item: CartItem) => void,
-  removeFromCart: (productId: string, quantity: number) => void,
+  removeFromCart: (productId: string) => void,
   updateQuantity: (productId: string, quantity: number) => void,
   clearCart: () => void
 }
