@@ -5,6 +5,7 @@ import Footer from '../components/Footer/Footer'
 import Container from '../components/Container/Container'
 import Filters from '../components/Filters/Filters'
 import { Nunito } from 'next/font/google'
+import { Toaster } from 'react-hot-toast'
 
 export const metadata: Metadata = {
   title: 'Food delivery shop',
@@ -25,6 +26,7 @@ export default function RootLayout({
     <html lang="en">
     <body className={nunito.className}>
     <Container>
+      <Toaster />
       <Header shopFilters={<Filters variant="mobile" />} />
       <main>{children}</main>
       <Footer />
