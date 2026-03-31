@@ -3,6 +3,7 @@ import './globals.css'
 import Header from '../components/Header/Header'
 import Footer from '../components/Footer/Footer'
 import Container from '../components/Container/Container'
+import Filters from '../components/Filters/Filters'
 import { Nunito } from 'next/font/google'
 
 export const metadata: Metadata = {
@@ -24,7 +25,7 @@ export default function RootLayout({
     <html lang="en">
     <body className={nunito.className}>
     <Container>
-      <Header />
+      <Header shopFilters={<Filters variant="mobile" />} />
       <main>{children}</main>
       <Footer />
     </Container>

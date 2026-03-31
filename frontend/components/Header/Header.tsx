@@ -8,7 +8,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { AnimatePresence, motion } from 'framer-motion'
 
-export default function Header() {
+export default function Header({ shopFilters }: { shopFilters?: React.ReactNode }) {
   const pathname = usePathname()
   const [isOpen, setIsOpen] = React.useState(false)
 
@@ -72,26 +72,10 @@ export default function Header() {
               >
                 <HiOutlineX size={28} />
               </button>
-              <ul className={css.mobileMenuTextContainer}>
-                <li>
-                  <Link
-                    href="/"
-                    className={css.mobileMenuText}
-                    onClick={toggleMenu}
-                  >
-                    Shop
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/cart"
-                    className={css.mobileMenuText}
-                    onClick={toggleMenu}
-                  >
-                    Shopping Cart <HiOutlineShoppingCart />
-                  </Link>
-                </li>
-              </ul>
+              <div className={css.filtersMenuWrap} onClick={toggleMenu}>
+                {' '}
+                {shopFilters}
+              </div>
             </motion.nav>
           </>
         )}

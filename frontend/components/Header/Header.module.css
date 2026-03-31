@@ -89,6 +89,10 @@
     display: none;
 }
 
+.filtersMenuWrap {
+    width: 100%;
+}
+
 @media (min-width: 1024px) {
     .logoDiv {
         position: static;
