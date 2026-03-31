@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import { persist } from 'zustand/middleware'
 
 type CartItem = {
   productId: string,
@@ -16,23 +17,28 @@ type CartStore = {
   clearCart: () => void
 }
 
-export const useCartStore = create<CartStore>((set) => ({
-  items: [],
-  addToCart: (item) => set((state) => {
-    const existing = state.items.find(i => i.productId === item.productId)
-    if (existing) return {
-      items: state.items.map(i => i.productId === item.productId ? {
-        ...i,
-        quantity: i.quantity + 1,
-      } : i),
-    }
-    return { items: [...state.items, item] }
-  }),
-  removeFromCart: (productId) => set((state) => (
-    { items: state.items.filter(i => i.productId !== productId) }
-  )),
-  updateQuantity: (productId, quantity) => set(state => ({
-    items: state.items.map(i => i.productId === productId ? { ...i, quantity } : i),
-  })),
-  clearCart: () => set({ items: [] }),
-}))
+export const useCartStore = create<CartStore>()(
+  persist(
+    (set) => ({
+      items: [],
+      addToCart: (item) => set((state) => {
+        const existing = state.items.find(i => i.productId === item.productId)
+        if (existing) return {
+          items: state.items.map(i => i.productId === item.productId ? {
+            ...i,
+            quantity: i.quantity + 1,
+          } : i),
+        }
+        return { items: [...state.items, item] }
+      }),
+      removeFromCart: (productId) => set((state) => (
+        { items: state.items.filter(i => i.productId !== productId) }
+      )),
+      updateQuantity: (productId, quantity) => set(state => ({
+        items: state.items.map(i => i.productId === productId ? { ...i, quantity } : i),
+      })),
+      clearCart: () => set({ items: [] }),
+    }),
+    { name: 'cart' }
+  )
+)
