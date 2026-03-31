@@ -51,12 +51,18 @@
     top: 0;
     right: 0;
     bottom: 0;
-    width: 75%;
+    width: 100%;
     background: #fff;
     z-index: 20;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+@media (min-width: 480px) {
+    .menu {
+        width: 75%;
+    }
 }
 
 .closeBtn {
