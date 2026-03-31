@@ -21,6 +21,7 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 app.use("/products", productRoutes);
+app.use("/order", orderRoutes);
 app.listen(PORT, () => {
   console.log(`🚀 Server is running on http://localhost:${PORT}`);
 });
