@@ -4,6 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import connectDB from "./lib/db";
 import productRoutes from "./routes/product.routes";
+import orderRoutes from "./routes/order.routes";
 
 dotenv.config();
 connectDB().catch((err) => {
