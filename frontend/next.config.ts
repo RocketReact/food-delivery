@@ -4,8 +4,9 @@ const nextConfig: NextConfig = {
   /* config options here */
   images: {
     remotePatterns: [{ protocol: 'https', hostname: '**' }],
+    minimumCacheTTL: 3600,
   },
-  reactCompiler: true,
+  reactCompiler: process.env.NODE_ENV === 'production',
 }
 
 export default nextConfig

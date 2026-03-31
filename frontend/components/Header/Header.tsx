@@ -21,15 +21,14 @@ export default function Header() {
     <header className={css.header}>
       <div className={css.headerContainer}>
         <ul className={css.headerTextContainer}>
-          <Link href="/">
-            <li className={pathname === '/' ? css.active : ''}>Shop</li>
-          </Link>
-          <Link href="/cart">
-            <li className={pathname === '/cart' ? css.active : ''}>
-              Shopping Cart
-            </li>
-          </Link>
+          <li className={pathname === '/' ? css.active : ''}>
+            <Link href="/">Shop </Link>
+          </li>
+          <li className={pathname === '/cart' ? css.active : ''}>
+            <Link href="/cart">Shopping Cart</Link>
+          </li>
         </ul>
+
         <Link href="/cart" className={css.cart}>
           <HiOutlineShoppingCart size={25} color="#df2727" />
         </Link>
@@ -40,7 +39,11 @@ export default function Header() {
           </Link>
         </div>
 
-        <button onClick={toggleMenu} className={css.burgerBtn} aria-label="toggle-menu">
+        <button
+          onClick={toggleMenu}
+          className={css.burgerBtn}
+          aria-label="toggle-menu"
+        >
           <HiOutlineMenu size={30} />
         </button>
       </div>
@@ -62,7 +65,11 @@ export default function Header() {
               transition={{ type: 'tween' }}
               className={css.menu}
             >
-              <button onClick={toggleMenu} className={css.closeBtn} aria-label="close-menu">
+              <button
+                onClick={toggleMenu}
+                className={css.closeBtn}
+                aria-label="close-menu"
+              >
                 <HiOutlineX size={28} />
               </button>
               <ul className={css.mobileMenuTextContainer}>
