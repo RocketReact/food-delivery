@@ -1,8 +1,13 @@
 .mainHomeContainer {
     display: flex;
-    padding-left: 20px;
     height: calc(100vh - 87px);
     overflow: hidden;
+}
+
+@media (min-width: 768px) {
+    .mainHomeContainer {
+        padding-left: 20px;
+    }
 }
 
 .grid {
