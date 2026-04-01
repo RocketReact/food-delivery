@@ -29,8 +29,17 @@ export default function RootLayout({
   return (
     <html lang="en">
     <body className={nunito.className}>
+    <Toaster
+      toastOptions={{
+        style: {
+          width: '400px',
+          height: '60px',
+          fontSize: '17px',
+        },
+        duration: 2000,
+      }}
+    />
     <Container>
-      <Toaster />
       <Header shopFilters={<Filters variant="mobile" />} />
       <main>{children}</main>
       <Footer />
