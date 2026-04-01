@@ -14,9 +14,6 @@
     height: 100%;
 }
 
-.active {
-    background: #eaeaea;
-}
 
 .titleShops {
     margin-top: 30px;
@@ -38,7 +35,7 @@
 }
 
 .shopsList > li:hover {
-    background: #eaeaea;
+    background: #e8e8e8;
 }
 
 /* Mobile menu shops */
@@ -74,6 +71,7 @@
 
 .mobileShopLink:hover {
     background: #e8e8e8;
+    cursor: pointer;
 }
 
 @media (max-width: 767px) {
@@ -93,4 +91,9 @@
     .sideShops {
         width: 300px;
     }
+}
+
+.active {
+    background: #b8b8b8;
+    color: #fff;
 }
