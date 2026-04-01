@@ -18,29 +18,37 @@ export default function Footer() {
         </li>
       </ul>
       <div className={css.blockContainerFooter}>
-        <h4>Follow us</h4>
+        <h4 className={css.nowrap}>Follow us</h4>
         <ul className={css.row}>
           <li className={css.socialIcons}>
-            <a href="https://instagram.com/fooddelivery" target="_blank" rel="noopener noreferrer">
-              <FaInstagram size={27} />
+            <a
+              href="https://instagram.com/fooddelivery"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaInstagram size={30} />
             </a>
           </li>
           <li className={css.socialIcons}>
-            <a href="https://facebook/fooddelivery" target="_blank" rel="noopener noreferrer">
-              <FaFacebookSquare size={27} />
+            <a
+              href="https://facebook/fooddelivery"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaFacebookSquare size={30} />
             </a>
           </li>
         </ul>
       </div>
       <div className={css.blockContainerFooter}>
         <h4>Downloads</h4>
-        <ul className={css.row}>
+        <ul className={`${css.row} ${css.columnSocialDesktop}`}>
           <li>
             <a
               href="#"
               target="_blank"
               rel="noopener noreferrer"
-              style={{ display: 'inline-block', height: 40 }}
+              style={{ display: 'inline-block', height: 40, width: 130 }}
             >
               <img
                 src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
@@ -66,7 +74,54 @@ export default function Footer() {
         </ul>
       </div>
 
-      <ul></ul>
+      <ul className={css.blockContainerFooter}>
+        <h4>Links of interest</h4>
+        <li>
+          <a
+            href="https://fooddelivery/about"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            About us
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://fooddelivery/faq"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            FAQ
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://fooddelivery/frime"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Food Delivery Prime
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://fooddelivery/blog"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Blog
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://fooddelivery/login"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Log in
+          </a>
+        </li>
+      </ul>
     </footer>
   )
 }

@@ -3,10 +3,10 @@
     flex-direction: column;
     justify-content: start;
     align-items: start;
-    height: 400px;
+    height: 100%;
     background: #f9f9f9;
     border-radius: 12px;
-    margin: 0 16px 16px 16px;
+    margin: 0 1rem 2rem 1rem;
 }
 
 .blockContainerFooter {
@@ -31,4 +31,35 @@
 
 .footerContainer > * h4 {
     margin-bottom: 8px;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+@media (min-width: 1024px) {
+    .footerContainer {
+        flex-direction: row;
+        justify-content: space-between;
+        min-height: 320px;
+    }
+
+    .nowrap {
+        text-wrap: nowrap;
+    }
+
+    .columnSocialDesktop {
+        flex-direction: column;
+    }
+
+    .footerContainer > * h4 {
+        margin-bottom: 0.8rem;
+        font-size: 1.2rem;
+    }
+
+    .blockContainerFooter {
+        padding: 4rem 2rem;
+    }
+
+    .footerContainer {
+        font-size: 1.08rem;
+    }
 }
