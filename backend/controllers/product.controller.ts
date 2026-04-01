@@ -20,10 +20,12 @@ export const createProduct = async (req: Request, res: Response) => {
 
 export const getProducts = async (req: Request, res: Response) => {
   try {
-    const { storeName, category } = req.query;
+    const { storeName, category, rating, deliveryTime } = req.query;
     const filter: Record<string, unknown> = {};
     if (storeName) filter.storeName = storeName;
     if (category) filter.category = category;
+    if (rating) filter.rating = rating;
+    if (deliveryTime) filter.deliveryTime = deliveryTime;
     const products = await Product.find(filter).limit(20).lean();
     res.status(200).json(products);
   } catch (error: any) {
