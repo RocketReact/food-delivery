@@ -14,6 +14,10 @@
     height: 100%;
 }
 
+.active {
+    background: #eaeaea;
+}
+
 .titleShops {
     margin-top: 30px;
     font-size: 1.3rem;
@@ -29,7 +33,12 @@
 
 .shopsList > li {
     cursor: pointer;
-    padding: 1rem 3rem;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+}
+
+.shopsList > li:hover {
+    background: #eaeaea;
 }
 
 /* Mobile menu shops */

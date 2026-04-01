@@ -1,6 +1,7 @@
 import css from './Filters.module.css'
 import Link from 'next/link'
 import { getShops } from '../services/getShops'
+import ShopsFilterDesktopClient from './ShopsFilterDesktop.client'
 
 type FiltersProps = {
   variant: 'desktop' | 'mobile'
@@ -17,8 +18,8 @@ export default async function Filters({ variant }: FiltersProps) {
           {shops.map(shop => (
             <li key={shop}>
               <Link
-                href={{ pathname: '/', query: { storeName: shop } }}
                 className={css.mobileShopLink}
+                href={{ pathname: '/', query: { storeName: shop } }}
               >
                 {shop}
               </Link>
@@ -28,21 +29,5 @@ export default async function Filters({ variant }: FiltersProps) {
       </div>
     )
   }
-
-  return (
-    <div className={css.sideShops}>
-      <p className={css.titleShops}>Shops:</p>
-      <ul className={css.shopsList}>
-        {shops.map(shop => (
-          <li key={shop}>
-            <Link
-              href={{ pathname: '/', query: { storeName: shop } }}
-            >
-              {shop}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
-  )
+  return <ShopsFilterDesktopClient />
 }
