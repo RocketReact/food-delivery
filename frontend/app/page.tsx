@@ -54,7 +54,7 @@ export default async function Home({
                 />
               </div>
               <p>{product.name}</p>
-              <p>{product.price}$</p>
+              <p className={css.price}>{product.price}$</p>
               <ProductCard product={product} className={css.buyBtn} />{' '}
             </div>
           ))

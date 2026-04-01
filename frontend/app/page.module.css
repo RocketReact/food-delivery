@@ -55,7 +55,10 @@
 
 .product p {
     margin: 0;
-    font-size: 0.9rem;
+}
+
+.price {
+    font-weight: 600;
 }
 
 .buyBtn {
