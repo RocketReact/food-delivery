@@ -3,6 +3,7 @@ import css from './Header.module.css'
 import Image from 'next/image'
 import icon from '../../public/logo-delivery.png'
 import { HiOutlineMenu, HiOutlineX, HiOutlineShoppingCart } from 'react-icons/hi'
+import { HiOutlineArrowRightOnRectangle } from 'react-icons/hi2'
 import React from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -46,6 +47,9 @@ export default function Header({ shopFilters }: { shopFilters?: React.ReactNode 
         >
           <HiOutlineMenu size={30} />
         </button>
+        <Link href="/login" className={css.loginLink}>
+          <HiOutlineArrowRightOnRectangle size={30} />
+        </Link>
       </div>
 
       <AnimatePresence>

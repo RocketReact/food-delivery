@@ -59,9 +59,25 @@
     justify-content: center;
 }
 
-@media (min-width: 480px) {
+.loginLink {
+    display: none;
+}
+
+@media (min-width: 768px) {
     .burgerBtn {
         display: none;
+    }
+
+    .loginLink {
+        display: block;
+        border: none;
+        background: none;
+        color: #656565;
+        padding: 20px;
+    }
+
+    .loginLink:hover {
+        cursor: pointer;
     }
 }
 
