@@ -61,7 +61,10 @@ export default function Cart() {
     <div className={css.cartContainer}>
       <div className={css.itemsCol}>
         {items.length === 0 ? (
-          <p>Cart is empty</p>
+          <>
+            <p>Cart is empty</p>
+            <p>Please Add to cart first</p>
+          </>
         ) : (
           <>
             {items.map((i, index) => (
@@ -114,7 +117,6 @@ export default function Cart() {
                 clearCart()
                 toast.success('Cart is empty! Continue shopping!', {})
               }}
-
             >
               Clear cart
             </button>
