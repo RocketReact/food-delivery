@@ -176,7 +176,6 @@
 
     .formCol {
         flex: 1;
-        position: sticky;
         top: 1rem;
         order: -1;
     }
