@@ -1,0 +1,19 @@
+{
+  "build": {
+    "command": "npm install && npm run build",
+    "rootDir": ".",
+    "environment": "metal",
+    "outputDir": "dist"
+  },
+  "start": {
+    "command": "node dist/server.js",
+    "rootDir": ".",
+    "environment": "metal"
+  },
+  "env": [
+    {
+      "name": "NODE_ENV",
+      "value": "production"
+    }
+  ]
+}
