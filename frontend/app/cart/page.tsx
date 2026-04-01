@@ -64,13 +64,14 @@ export default function Cart() {
           <p>Cart is empty</p>
         ) : (
           <>
-            {items.map(i => (
+            {items.map((i, index) => (
               <div className={css.itemInCard} key={i.productId}>
                 <Image
                   src={i.image || '/placeholder.png'}
                   alt={i.name}
                   width={80}
                   height={80}
+                  loading={index <= 3 ? 'eager' : 'lazy'}
                 />
                 <div className={css.itemInfo}>
                   <p>{i.name}</p>
