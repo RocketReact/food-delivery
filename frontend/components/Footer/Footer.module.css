@@ -1,10 +1,34 @@
 .footerContainer {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: start;
+    align-items: start;
     height: 400px;
     background: #f9f9f9;
     border-radius: 12px;
     margin: 0 16px 16px 16px;
+}
+
+.blockContainerFooter {
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+    color: #5c5b5b;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.socialIcons:hover {
+    scale: 1.1;
+    transition: scale 0.3s;
+}
+
+.footerContainer > * h4 {
+    margin-bottom: 8px;
 }
