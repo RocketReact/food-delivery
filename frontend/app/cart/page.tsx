@@ -110,7 +110,11 @@ export default function Cart() {
             ))}
             <button
               className={`${css.clearAndSubmitBtn} ${css.clearBtnMuted}`}
-              onClick={clearCart}
+              onClick={() => {
+                clearCart()
+                toast.success('Cart is empty! Continue shopping!', {})
+              }}
+
             >
               Clear cart
             </button>
