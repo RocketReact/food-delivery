@@ -8,7 +8,7 @@ import { Nunito } from 'next/font/google'
 import { Toaster } from 'react-hot-toast'
 
 export const metadata: Metadata = {
-  title: 'Food delivery shop',
+  title: 'Food Delivery',
   description: 'Order food online any time',
 }
 
