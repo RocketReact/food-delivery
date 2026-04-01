@@ -77,26 +77,42 @@ export default function Cart() {
                   <p>{i.price}$</p>
                   <div className={css.qty}>
                     <button
-                      onClick={() => i.quantity === 1 ? removeFromCart(i.productId) : updateQuantity(i.productId, i.quantity - 1)}>−
+                      onClick={() =>
+                        i.quantity === 1
+                          ? removeFromCart(i.productId)
+                          : updateQuantity(i.productId, i.quantity - 1)
+                      }
+                    >
+                      −
                     </button>
                     <input
                       type="number"
                       min={1}
                       value={i.quantity}
-                      onChange={(e) => {
+                      onChange={e => {
                         const val = parseInt(e.target.value)
                         if (!val || val < 1) return removeFromCart(i.productId)
                         updateQuantity(i.productId, val)
                       }}
                       className={css.qtyInput}
                     />
-                    <button onClick={() => updateQuantity(i.productId, i.quantity + 1)}>+</button>
+                    <button
+                      onClick={() =>
+                        updateQuantity(i.productId, i.quantity + 1)
+                      }
+                    >
+                      +
+                    </button>
                   </div>
                 </div>
               </div>
             ))}
-            <p className={css.total}>Total: {total.toFixed(2)}$</p>
-            <button className={`${css.clearBtn} ${css.clearBtnMuted}`} onClick={clearCart}>Clear cart</button>
+            <button
+              className={`${css.clearAndSubmitBtn} ${css.clearBtnMuted}`}
+              onClick={clearCart}
+            >
+              Clear cart
+            </button>
           </>
         )}
       </div>
@@ -108,17 +124,26 @@ export default function Cart() {
           </div>
           <div>
             <input placeholder="Email" {...register('email')} />
-            {errors.email && <p className={css.error}>{errors.email.message}</p>}
+            {errors.email && (
+              <p className={css.error}>{errors.email.message}</p>
+            )}
           </div>
           <div>
             <input placeholder="Phone" {...register('phone')} />
-            {errors.phone && <p className={css.error}>{errors.phone.message}</p>}
+            {errors.phone && (
+              <p className={css.error}>{errors.phone.message}</p>
+            )}
           </div>
           <div>
             <input placeholder="Address" {...register('address')} />
-            {errors.address && <p className={css.error}>{errors.address.message}</p>}
+            {errors.address && (
+              <p className={css.error}>{errors.address.message}</p>
+            )}
           </div>
-          <button type="submit" className={css.clearBtn}>Submit</button>
+          <p className={css.total}>Total: {total.toFixed(2)}$</p>
+          <button type="submit" className={css.clearAndSubmitBtn}>
+            Submit
+          </button>
         </form>
       )}
     </div>

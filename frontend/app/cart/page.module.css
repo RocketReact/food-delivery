@@ -65,8 +65,7 @@
     font-size: 0.9rem;
 }
 
-.clearBtn {
-    margin-top: 1rem;
+.clearAndSubmitBtn {
     border: none;
     padding: 0.75rem 2rem;
     width: 100%;
@@ -76,11 +75,13 @@
     cursor: pointer;
 }
 
-.clearBtn:hover {
+
+.clearAndSubmitBtn:hover {
     background: #e64949;
 }
 
 .clearBtnMuted {
+    margin-top: 1rem;
     background: #a53232;
 }
 
@@ -161,7 +162,7 @@
         height: 100px;
     }
 
-    .clearBtn {
+    .clearAndSubmitBtn {
         width: 70%;
         align-self: center;
     }
