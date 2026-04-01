@@ -1,20 +1,9 @@
 import css from './Filters.module.css'
 import Link from 'next/link'
+import { getShops } from '../services/getShops'
 
 type FiltersProps = {
   variant: 'desktop' | 'mobile'
-}
-
-async function getShops(): Promise<string[]> {
-  try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_URL_SERVER}/products/shops`, {
-      cache: 'no-store',
-    })
-    if (res.ok) return res.json()
-    return []
-  } catch {
-    return []
-  }
 }
 
 export default async function Filters({ variant }: FiltersProps) {
