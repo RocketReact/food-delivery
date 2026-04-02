@@ -2,16 +2,8 @@
 import css from './Filters.module.css'
 import Link from 'next/link'
 import { useFilters } from '../../context/FiltersContext'
+import { buildHref } from '../../utils/buildHref'
 
-function buildHref(params: Record<string, string | undefined>) {
-  const searchParams = new URLSearchParams()
-  for (const [key, value] of Object.entries(params)) {
-    if (value) {
-      searchParams.set(key, value)
-    }
-  }
-  return `/?${searchParams.toString()}`
-}
 
 export default function MobileFilters() {
   const { data: { shops, categories, storeName, category } } = useFilters()

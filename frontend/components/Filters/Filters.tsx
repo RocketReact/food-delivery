@@ -1,16 +1,7 @@
 import css from './Filters.module.css'
 import Link from 'next/link'
 import { FiltersProps } from '../../types/types'
-
-function buildHref(params: Record<string, string | undefined>) {
-  const searchParams = new URLSearchParams()
-  for (const [key, value] of Object.entries(params)) {
-    if (value) {
-      searchParams.set(key, value)
-    }
-  }
-  return `/?${searchParams.toString()}`
-}
+import { buildHref } from '../../utils/buildHref'
 
 export default function Filters({
                                   shops = [],
