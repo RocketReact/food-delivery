@@ -12,6 +12,6 @@ export const createOrder = async (req: Request, res: Response) => {
     const order = await Order.create(parsed.data);
     res.status(201).json(order);
   } catch (error: any) {
-    res.status(500).json({ error: "Failed to create order", details: error.message });
+    res.status(500).json({ error: "Failed create order", details: error.message });
   }
 };
