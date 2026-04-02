@@ -1,16 +1,10 @@
 'use client'
 import { useEffect } from 'react'
 import { useFilters } from '../../context/FiltersContext'
-import { Shop } from '../../types/types'
+import { FiltersProps } from '../../types/types'
 
-type Props = {
-  shops: Shop[]
-  categories: string[]
-  storeName?: string
-  category?: string
-}
 
-export default function FiltersSync({ shops, categories, storeName, category }: Props) {
+export default function FiltersSync({ shops = [], categories = [], storeName, category }: FiltersProps) {
   const { setData } = useFilters()
 
   useEffect(() => {
