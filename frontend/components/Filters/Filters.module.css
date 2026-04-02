@@ -14,7 +14,6 @@
     height: 100%;
 }
 
-
 .titleShops {
     margin-top: 30px;
     font-size: 1.3rem;
@@ -28,19 +27,22 @@
     margin-top: 10px;
 }
 
-.shopsList > li {
+.shopsList > li > a {
+    display: block;
     cursor: pointer;
     padding: 0.75rem 2rem;
     border-radius: 50px;
+    text-decoration: none;
+    color: inherit;
 }
 
-.shopsList > li:hover {
+.shopsList > li > a:hover {
     background: #e8e8e8;
 }
 
 /* Mobile menu shops */
 .mobileShops {
-    margin: 0 auto;
+    margin: 4rem auto;
     width: 100%;
     max-width: 350px;
     padding: 0 1rem;
@@ -94,6 +96,6 @@
 }
 
 .active {
-    background: #b8b8b8;
-    color: #fff;
+    background: #b8b8b8 !important;
+    color: #fff !important;
 }

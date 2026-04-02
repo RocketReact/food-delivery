@@ -1,15 +1,13 @@
-type Filters = {
-  storeName?: string,
-  category?: string,
-}
+import { Filters, Product } from '../types/types'
 
-export async function getProducts(filters?: Filters): Promise<string[]> {
+
+export async function getProducts(filters?: Filters): Promise<Product[]> {
   const params = new URLSearchParams()
   if (filters?.storeName) params.set('storeName', filters.storeName)
   if (filters?.category) params.set('category', filters.category)
 
   const query = params.toString()
-  const url = `${process.env.NEXT_PUBLIC_URL_SERVER}/products?${query ? `?${query}` : ''}`
+  const url = `${process.env.NEXT_PUBLIC_URL_SERVER}/products${query ? `?${query}` : ''}`
 
   try {
     const res = await fetch(url, { cache: 'no-cache' })

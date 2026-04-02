@@ -1,6 +1,7 @@
+'use client'
 import css from './Filters.module.css'
 import Link from 'next/link'
-import { FiltersProps } from '../../types/types'
+import { useFilters } from '../../context/FiltersContext'
 
 function buildHref(params: Record<string, string | undefined>) {
   const searchParams = new URLSearchParams()
@@ -12,21 +13,20 @@ function buildHref(params: Record<string, string | undefined>) {
   return `/?${searchParams.toString()}`
 }
 
-export default function Filters({
-                                  shops = [],
-                                  storeName,
-                                  category,
-                                  categories,
-                                }: FiltersProps) {
+export default function MobileFilters() {
+  const { data: { shops, categories, storeName, category } } = useFilters()
+
   return (
-    <div className={css.sideShops}>
-      <p className={css.titleShops}>Shops:</p>
-      <ul className={css.shopsList}>
+    <div className={css.mobileShops}>
+      <p className={css.mobileTitle}>Shops:</p>
+      <ul className={css.mobileShopsList}>
         {shops.map(shop => (
           <li key={shop._id}>
             <Link
               href={buildHref({ storeName: shop.name, category })}
-              className={storeName === shop.name ? css.active : ''}
+              className={`${css.mobileShopLink} ${
+                storeName === shop.name ? css.active : ''
+              }`}
             >
               {shop.name}
             </Link>

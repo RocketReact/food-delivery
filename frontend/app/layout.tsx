@@ -3,7 +3,8 @@ import './globals.css'
 import Header from '../components/Header/Header'
 import Footer from '../components/Footer/Footer'
 import Container from '../components/Container/Container'
-import Filters from '../components/Filters/Filters'
+import MobileFilters from '../components/Filters/MobileFilters'
+import { FiltersProvider } from '../context/FiltersContext'
 import { Nunito } from 'next/font/google'
 import { Toaster } from 'react-hot-toast'
 
@@ -39,11 +40,13 @@ export default function RootLayout({
         duration: 2000,
       }}
     />
-    <Container>
-      <Header shopFilters={<Filters variant="mobile" />} />
-      <main>{children}</main>
-      <Footer />
-    </Container>
+    <FiltersProvider>
+      <Container>
+        <Header shopFilters={<MobileFilters />} />
+        <main>{children}</main>
+        <Footer />
+      </Container>
+    </FiltersProvider>
     </body>
     </html>
   )

@@ -1,14 +1,12 @@
 import Image from 'next/image'
 import css from './page.module.css'
 import Filters from '../components/Filters/Filters'
+import FiltersSync from '../components/Filters/FiltersSync'
 import ProductCard from '../components/AddToCard/AddToCard.client'
+import { getShops } from '../services/getShops'
+import { getProducts } from '../services/getProducts'
+import { getCategories } from '../services/getCategories'
 
-type Product = {
-  _id: string
-  name: string
-  price: number
-  image?: string
-}
 
 export default async function Home({
                                      searchParams,
@@ -16,28 +14,18 @@ export default async function Home({
   searchParams: Promise<{ storeName?: string; category?: string }>
 }) {
   const { storeName, category } = await searchParams
-
-  const params = new URLSearchParams()
-  if (storeName) params.set('storeName', storeName)
-  if (category) params.set('category', category)
-
-  const query = params.toString()
-  const url = `${process.env.NEXT_PUBLIC_URL_SERVER}/products${query ? `?${query}` : ''}`
-
-  let products: Product[] = []
-
-  try {
-    const res = await fetch(url, { cache: 'no-store' })
-    if (res.ok) {
-      products = await res.json()
-    }
-  } catch (error) {
-    console.error('Fetch error:', error)
-  }
-
+  const shops = await getShops()
+  const products = await getProducts({ storeName, category })
+  const categories = await getCategories()
   return (
     <div className={css.mainHomeContainer}>
-      <Filters variant="desktop" />
+      <FiltersSync shops={shops} categories={categories} storeName={storeName} category={category} />
+      <Filters
+        shops={shops}
+        storeName={storeName}
+        category={category}
+        categories={categories}
+      />
 
       <div className={css.grid}>
         {products.length > 0 ? (
