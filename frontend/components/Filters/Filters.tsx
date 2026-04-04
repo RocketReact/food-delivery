@@ -26,12 +26,21 @@ export default function Filters({
         <p className={css.titleFilters}>Shops:</p>
         {shops.map(shop => (
           <li key={shop._id}>
-            <Link
-              href={buildHref({ storeName: shop.name, category, sort, rating })}
+            <a
+              onClick={() =>
+                router.push(
+                  buildHref({
+                    storeName: storeName === shop.name ? undefined : shop.name,
+                    category,
+                    sort,
+                    rating,
+                  }),
+                )
+              }
               className={storeName === shop.name ? css.active : ''}
             >
               {shop.name}
-            </Link>
+            </a>
           </li>
         ))}
       </ul>
@@ -56,9 +65,15 @@ export default function Filters({
               name="ratingDesktopFilter"
               value="4"
               checked={rating === '4'}
-              onChange={() =>
+              readOnly
+              onClick={() =>
                 router.push(
-                  buildHref({ storeName, category, sort, rating: '4' }),
+                  buildHref({
+                    storeName,
+                    category,
+                    sort,
+                    rating: rating === '4' ? undefined : '4',
+                  }),
                 )
               }
             />
@@ -71,9 +86,15 @@ export default function Filters({
               name="ratingDesktopFilter"
               value="3"
               checked={rating === '3'}
-              onChange={() =>
+              readOnly
+              onClick={() =>
                 router.push(
-                  buildHref({ storeName, category, sort, rating: '3' }),
+                  buildHref({
+                    storeName,
+                    category,
+                    sort,
+                    rating: rating === '3' ? undefined : '3',
+                  }),
                 )
               }
             />
@@ -86,9 +107,15 @@ export default function Filters({
               name="ratingDesktopFilter"
               value="2"
               checked={rating === '2'}
-              onChange={() =>
+              readOnly
+              onClick={() =>
                 router.push(
-                  buildHref({ storeName, category, sort, rating: '2' }),
+                  buildHref({
+                    storeName,
+                    category,
+                    sort,
+                    rating: rating === '2' ? undefined : '2',
+                  }),
                 )
               }
             />
@@ -112,12 +139,21 @@ export default function Filters({
         <ul className={`${css.categoriesInner} ${css.collapsible}`}>
           {categories.map(cat => (
             <li key={cat}>
-              <Link
-                href={buildHref({ storeName, category: cat, sort, rating })}
+              <a
+                onClick={() =>
+                  router.push(
+                    buildHref({
+                      storeName,
+                      category: category === cat ? undefined : cat,
+                      sort,
+                      rating,
+                    }),
+                  )
+                }
                 className={cat === category ? css.active : ''}
               >
                 {cat}
-              </Link>
+              </a>
             </li>
           ))}
         </ul>
@@ -141,9 +177,15 @@ export default function Filters({
               name="sort"
               value="price_asc"
               checked={sort === 'price_asc'}
-              onChange={() =>
+              readOnly
+              onClick={() =>
                 router.push(
-                  buildHref({ storeName, category, sort: 'price_asc' }),
+                  buildHref({
+                    storeName,
+                    category,
+                    rating,
+                    sort: sort === 'price_asc' ? undefined : 'price_asc',
+                  }),
                 )
               }
             />
@@ -156,9 +198,15 @@ export default function Filters({
               name="sort"
               value="price_desc"
               checked={sort === 'price_desc'}
-              onChange={() =>
+              readOnly
+              onClick={() =>
                 router.push(
-                  buildHref({ storeName, category, sort: 'price_desc' }),
+                  buildHref({
+                    storeName,
+                    category,
+                    rating,
+                    sort: sort === 'price_desc' ? undefined : 'price_desc',
+                  }),
                 )
               }
             />
@@ -171,9 +219,15 @@ export default function Filters({
               name="sort"
               value="name_asc"
               checked={sort === 'name_asc'}
-              onChange={() =>
+              readOnly
+              onClick={() =>
                 router.push(
-                  buildHref({ storeName, category, sort: 'name_asc' }),
+                  buildHref({
+                    storeName,
+                    category,
+                    rating,
+                    sort: sort === 'name_asc' ? undefined : 'name_asc',
+                  }),
                 )
               }
             />
