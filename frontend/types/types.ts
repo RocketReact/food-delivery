@@ -9,11 +9,21 @@ export type FiltersProps = {
   shops?: Shop[]
   category?: string
   categories?: string[]
+  sort?: string
+}
+
+export type FiltersData = {
+  shops: Shop[]
+  categories: string[]
+  storeName?: string
+  category?: string
+  sort?: string
 }
 
 export type Filters = {
   storeName?: string,
   category?: string,
+  sort?: string,
 }
 export type Product = {
   _id: string

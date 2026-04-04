@@ -1,4 +1,4 @@
-import { Schema, model, models, Types } from "mongoose";
+import { Schema, model, models, Model, Types } from "mongoose";
 
 export const CATEGORIES = ["Burgers", "Drinks", "Desserts", "Pizza", "Pasta", "Salads", "Seafood"] as const;
 export type CategoryType = typeof CATEGORIES[number];
@@ -51,6 +51,6 @@ export const ProductSchema = new Schema<ProductType>(
   }
 );
 
-const Product = models.Product || model<ProductType>("Product", ProductSchema);
+const Product = (models.Product || model<ProductType>("Product", ProductSchema)) as Model<ProductType>;
 
 export default Product;

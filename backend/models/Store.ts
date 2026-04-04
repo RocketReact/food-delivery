@@ -1,4 +1,4 @@
-import { Schema, model, models } from "mongoose";
+import { Schema, model, models, Model } from "mongoose";
 
 export interface StoreType {
   name: string;
@@ -30,6 +30,6 @@ export const StoreSchema = new Schema<StoreType>(
   }
 );
 
-const Store = models.Store || model<StoreType>("Store", StoreSchema);
+const Store = (models.Store || model<StoreType>("Store", StoreSchema)) as Model<StoreType>;
 
 export default Store;

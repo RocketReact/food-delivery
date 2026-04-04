@@ -12,17 +12,18 @@ export default function Filters({
                                   storeName,
                                   category,
                                   categories = [],
+                                  sort,
                                 }: FiltersProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const router = useRouter()
   return (
     <div className={css.sideShops}>
       <ul className={css.categoriesInner}>
-        <p className={css.titleShops}>Shops:</p>
+        <p className={css.titleFilters}>Shops:</p>
         {shops.map(shop => (
           <li key={shop._id}>
             <Link
-              href={buildHref({ storeName: shop.name, category })}
+              href={buildHref({ storeName: shop.name, category, sort })}
               className={storeName === shop.name ? css.active : ''}
             >
               {shop.name}
@@ -31,7 +32,7 @@ export default function Filters({
         ))}
       </ul>
       <div className={css.titlePlusIcon}>
-        <p className={css.titleShops}>Categories</p>
+        <p className={css.titleFilters}>Categories</p>
         <FiChevronDown
           onClick={() => setIsOpen(prev => !prev)}
           size={20}
@@ -39,11 +40,11 @@ export default function Filters({
         />
       </div>
       <div className={`${css.categoriesWrapper} ${isOpen ? css.open : ''}`}>
-        <ul className={css.categoriesInner}>
+        <ul className={`${css.categoriesInner} ${css.collapsible}`}>
           {categories.map(cat => (
             <li key={cat}>
               <Link
-                href={buildHref({ storeName, category: cat })}
+                href={buildHref({ storeName, category: cat, sort })}
                 className={cat === category ? css.active : ''}
               >
                 {cat}
@@ -51,6 +52,66 @@ export default function Filters({
             </li>
           ))}
         </ul>
+      </div>
+      <div className={css.categoriesInner}>
+        <p className={css.titleFilters}>Sort By</p>
+        <label className={css.sortLabel}>
+          <input
+            className={css.radio}
+            type="radio"
+            name="sort"
+            value="price_asc"
+            checked={sort === 'price_asc'}
+            onChange={() =>
+              router.push(
+                buildHref({
+                  storeName,
+                  category,
+                  sort: 'price_asc',
+                }),
+              )
+            }
+          />
+          Price ↑
+        </label>
+        <label className={css.sortLabel}>
+          <input
+            className={css.radio}
+            type="radio"
+            name="sort"
+            value="price_desc"
+            checked={sort === 'price_desc'}
+            onChange={() =>
+              router.push(
+                buildHref({
+                  storeName,
+                  category,
+                  sort: 'price_desc',
+                }),
+              )
+            }
+          />
+          Price ↓
+        </label>
+        <label className={css.sortLabel}>
+          <input
+            className={css.radio}
+            type="radio"
+            name="sort"
+            value="name_asc"
+            checked={sort === 'name_asc'}
+            onChange={() =>
+              router.push(
+                buildHref({
+                  storeName,
+                  category,
+                  sort: 'name_asc',
+                }),
+              )
+            }
+          />
+          Name A→Z
+        </label>
       </div>
       <button
         onClick={() => router.push('/')}

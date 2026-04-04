@@ -18,14 +18,34 @@ export const createProduct = async (req: Request, res: Response) => {
   }
 };
 
-
 export const getProducts = async (req: Request, res: Response) => {
   try {
-    const { storeName, category } = req.query;
+    const { storeName, category, sort } = req.query;
     const filter: Record<string, unknown> = {};
-    if (storeName) filter.storeName = storeName;
-    if (category) filter.category = category;
-    const products = await Product.find(filter).limit(20).lean();
+    if (storeName) {
+      filter.storeName = Array.isArray(storeName) ? { $in: storeName } : storeName;
+    }
+    if (category) {
+      filter.category = Array.isArray(category) ? { $in: category } : category;
+    }
+
+    let sortOption: Record<string, 1 | -1> = {};
+
+    switch (sort) {
+      case "price_asc":
+        sortOption = { price: 1 };
+        break;
+      case "price_desc":
+        sortOption = { price: -1 };
+        break;
+      case "name_asc":
+        sortOption = { name: 1 };
+        break;
+      default:
+        sortOption = { createdAt: -1 };
+    }
+
+    const products = await Product.find(filter).sort(sortOption).limit(20).lean();
     res.status(200).json(products);
   } catch (error: any) {
     res.status(500).json({ message: "Failed to fetch products", details: error.message });

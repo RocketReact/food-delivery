@@ -14,10 +14,9 @@
     height: 100%;
 }
 
-.titleShops {
+.titleFilters {
     font-size: 1.3rem;
 }
-
 
 .titlePlusIcon {
     display: flex;
@@ -56,6 +55,12 @@
     margin: 10px;
 }
 
+.collapsible {
+    margin: 0;
+    padding: 0;
+    min-height: 0;
+}
+
 .categoriesInner > li > a {
     display: block;
     cursor: pointer;
@@ -67,6 +72,39 @@
 
 .categoriesInner > li > a:hover {
     background: #e8e8e8;
+}
+
+.radio {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #999;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+}
+
+.radio:checked {
+    border-color: #df2727;
+}
+
+.radio:checked::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background: #df2727;
+    border-radius: 50%;
+}
+
+.sortLabel {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
 }
 
 /* Mobile menu shops */

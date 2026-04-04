@@ -5,7 +5,7 @@ export async function getProducts(filters?: Filters): Promise<Product[]> {
   const params = new URLSearchParams()
   if (filters?.storeName) params.set('storeName', filters.storeName)
   if (filters?.category) params.set('category', filters.category)
-
+  if (filters?.sort) params.set('sort', filters.sort)
   const query = params.toString()
   const url = `${process.env.NEXT_PUBLIC_URL_SERVER}/products${query ? `?${query}` : ''}`
 

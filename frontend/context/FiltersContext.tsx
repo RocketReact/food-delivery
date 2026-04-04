@@ -1,13 +1,6 @@
 'use client'
 import { createContext, useContext, useState, ReactNode } from 'react'
-import { Shop } from '../types/types'
-
-type FiltersData = {
-  shops: Shop[]
-  categories: string[]
-  storeName?: string
-  category?: string
-}
+import { FiltersData } from '../types/types'
 
 type FiltersContextType = {
   data: FiltersData
