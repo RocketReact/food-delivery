@@ -32,6 +32,10 @@ export default function MobileFilters({ onClose }: { onClose?: () => void }) {
     )
     onClose?.()
   }
+  const clearFilters = () => {
+    setSelectedShop(undefined)
+    setSelectedCategory(undefined)
+  }
   return (
     <div className={css.mobileShops}>
       <ul className={css.mobileShopsList}>
@@ -74,6 +78,9 @@ export default function MobileFilters({ onClose }: { onClose?: () => void }) {
       </ul>
       <button onClick={applyFilters} className={css.btnApply}>
         Apply Filters
+      </button>
+      <button onClick={clearFilters} className={css.btnClear}>
+        Clear Filters
       </button>
     </div>
   )
