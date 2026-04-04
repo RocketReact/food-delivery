@@ -51,7 +51,7 @@ export default async function Home({
             </div>
           ))
         ) : (
-          <p>Products not found</p>
+          <p className={css.notFound}>Products not found</p>
         )}
       </div>
     </div>
