@@ -2,7 +2,7 @@
 import css from './page.module.css'
 import { useCartStore } from '../../store/cartStore'
 import Image from 'next/image'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
@@ -22,6 +22,7 @@ export default function Cart() {
   const clearCart = useCartStore(s => s.clearCart)
   const updateQuantity = useCartStore(s => s.updateQuantity)
   const removeFromCart = useCartStore(s => s.removeFromCart)
+  const [inputValues, setInputValues] = useState<Record<string, string>>({})
   const total = items.reduce((sum, i) => sum + i.price * i.quantity, 0)
 
   const saved = typeof window !== 'undefined'
@@ -84,29 +85,54 @@ export default function Cart() {
                   <p>{i.price}$</p>
                   <div className={css.qty}>
                     <button
-                      onClick={() =>
-                        i.quantity === 1
-                          ? removeFromCart(i.productId)
-                          : updateQuantity(i.productId, i.quantity - 1)
-                      }
+                      onClick={() => {
+                        if (i.quantity <= 0) return
+                        if (i.quantity === 1) {
+                          removeFromCart(i.productId)
+                        } else {
+                          updateQuantity(i.productId, i.quantity - 1)
+                        }
+                        setInputValues(prev => {
+                          const next = { ...prev }
+                          delete next[i.productId]
+                          return next
+                        })
+                      }}
                     >
                       −
                     </button>
                     <input
                       type="number"
-                      min={1}
-                      value={i.quantity}
+                      min={0}
+                      value={inputValues[i.productId] ?? i.quantity}
                       onChange={e => {
-                        const val = parseInt(e.target.value)
-                        if (!val || val < 1) return removeFromCart(i.productId)
-                        updateQuantity(i.productId, val)
+                        const raw = e.target.value
+                        setInputValues(prev => ({ ...prev, [i.productId]: raw }))
+                        const val = parseInt(raw)
+                        updateQuantity(i.productId, !isNaN(val) && val > 0 ? val : 0)
+                      }}
+                      onBlur={() => {
+                        const val = parseInt(inputValues[i.productId])
+                        if (isNaN(val) || val < 1) {
+                          updateQuantity(i.productId, 1)
+                        }
+                        setInputValues(prev => {
+                          const next = { ...prev }
+                          delete next[i.productId]
+                          return next
+                        })
                       }}
                       className={css.qtyInput}
                     />
                     <button
-                      onClick={() =>
-                        updateQuantity(i.productId, i.quantity + 1)
-                      }
+                      onClick={() => {
+                        updateQuantity(i.productId, Math.max(i.quantity, 0) + 1)
+                        setInputValues(prev => {
+                          const next = { ...prev }
+                          delete next[i.productId]
+                          return next
+                        })
+                      }}
                     >
                       +
                     </button>
