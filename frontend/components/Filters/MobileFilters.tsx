@@ -10,8 +10,8 @@ export default function MobileFilters() {
 
   return (
     <div className={css.mobileShops}>
-      <p className={css.mobileTitle}>Shops:</p>
       <ul className={css.mobileShopsList}>
+        <p className={css.mobileTitle}>Shops:</p>
         {shops.map(shop => (
           <li key={shop._id}>
             <Link
@@ -21,6 +21,19 @@ export default function MobileFilters() {
               }`}
             >
               {shop.name}
+            </Link>
+          </li>
+        ))}
+        <p className={css.mobileTitle}>Categories:</p>
+        {categories.map(cat => (
+          <li key={cat}>
+            <Link
+              href={buildHref({ storeName, category: cat })}
+              className={`${css.mobileShopLink} ${
+                cat === category ? css.active : ''
+              }`}
+            >
+              {cat}
             </Link>
           </li>
         ))}

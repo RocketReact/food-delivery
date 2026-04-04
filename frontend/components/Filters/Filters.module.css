@@ -30,7 +30,7 @@
 .shopsList > li > a {
     display: block;
     cursor: pointer;
-    padding: 0.75rem 2rem;
+    padding: 0.5rem 2rem;
     border-radius: 50px;
     text-decoration: none;
     color: inherit;
@@ -46,12 +46,14 @@
     width: 100%;
     max-width: 350px;
     padding: 0 1rem;
+    overflow-y: auto;
+    height: 100dvh;
 }
 
 .mobileTitle {
     font-size: 1.1rem;
     font-weight: 600;
-    margin-bottom: 0.75rem;
+    margin: 0.75rem;
     text-align: center;
 }
 

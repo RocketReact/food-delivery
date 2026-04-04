@@ -7,7 +7,6 @@ import { getShops } from '../services/getShops'
 import { getProducts } from '../services/getProducts'
 import { getCategories } from '../services/getCategories'
 
-
 export default async function Home({
                                      searchParams,
                                    }: {
@@ -19,7 +18,12 @@ export default async function Home({
   const categories = await getCategories()
   return (
     <div className={css.mainHomeContainer}>
-      <FiltersSync shops={shops} categories={categories} storeName={storeName} category={category} />
+      <FiltersSync
+        shops={shops}
+        categories={categories}
+        storeName={storeName}
+        category={category}
+      />
       <Filters
         shops={shops}
         storeName={storeName}

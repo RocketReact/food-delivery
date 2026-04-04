@@ -7,12 +7,12 @@ export default function Filters({
                                   shops = [],
                                   storeName,
                                   category,
-                                  categories,
+                                  categories = [],
                                 }: FiltersProps) {
   return (
     <div className={css.sideShops}>
-      <p className={css.titleShops}>Shops:</p>
       <ul className={css.shopsList}>
+        <p className={css.titleShops}>Shops:</p>
         {shops.map(shop => (
           <li key={shop._id}>
             <Link
@@ -20,6 +20,17 @@ export default function Filters({
               className={storeName === shop.name ? css.active : ''}
             >
               {shop.name}
+            </Link>
+          </li>
+        ))}
+        <p className={css.titleShops}>Categories:</p>
+        {categories.map(cat => (
+          <li key={cat}>
+            <Link
+              href={buildHref({ storeName, category: cat })}
+              className={cat === category ? css.active : ''}
+            >
+              {cat}
             </Link>
           </li>
         ))}

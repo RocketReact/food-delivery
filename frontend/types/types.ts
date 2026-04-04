@@ -6,9 +6,9 @@ export type Shop = {
 }
 export type FiltersProps = {
   storeName?: string
+  shops?: Shop[]
   category?: string
   categories?: string[]
-  shops?: Shop[]
 }
 
 export type Filters = {
