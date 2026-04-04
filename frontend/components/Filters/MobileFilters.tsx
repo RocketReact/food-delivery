@@ -54,10 +54,12 @@ export default function MobileFilters({ onClose }: { onClose?: () => void }) {
         ))}
       </ul>
       <ul className={css.mobileShopsList}>
-        <div className={css.titlePlusIcon}>
+        <div
+          onClick={() => setIsOpen(prev => !prev)}
+          className={css.titlePlusIcon}
+        >
           <p className={css.mobileTitle}>Categories</p>
           <FiChevronDown
-            onClick={() => setIsOpen(prev => !prev)}
             size={20}
             className={`${css.chevron} ${isOpen ? css.chevronOpen : ''}`}
           />

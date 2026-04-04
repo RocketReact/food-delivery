@@ -31,10 +31,12 @@ export default function Filters({
           </li>
         ))}
       </ul>
-      <div className={css.titlePlusIcon}>
+      <div
+        onClick={() => setIsOpen(prev => !prev)}
+        className={css.titlePlusIcon}
+      >
         <p className={css.titleFilters}>Categories</p>
         <FiChevronDown
-          onClick={() => setIsOpen(prev => !prev)}
           size={20}
           className={`${css.chevron} ${isOpen ? css.chevronOpen : ''}`}
         />
