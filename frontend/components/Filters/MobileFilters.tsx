@@ -7,13 +7,22 @@ import { useState } from 'react'
 import { FiChevronDown } from 'react-icons/fi'
 import { useRouter } from 'next/navigation'
 
-export default function MobileFilters({ onCloseAction }: { onCloseAction?: () => void }) {
+// Mobile filter panel — local state applied on "Apply Filters" click
+export default function MobileFilters({
+                                        onCloseAction,
+                                      }: {
+  onCloseAction?: () => void
+}) {
   const {
     data: { shops, categories, storeName, category, sort, rating },
   } = useFilters()
+
+  // Collapsible section toggles
   const [isOpenCategories, setIsOpenCategories] = useState<boolean>(false)
   const [isOpenSort, setIsOpenSort] = useState<boolean>(false)
   const [isOpenRatingFilter, setIsOpenRatingFilter] = useState<boolean>(false)
+
+  // Local filter state, initialized from URL params
   const [selectedShop, setSelectedShop] = useState<string | undefined>(
     storeName,
   )
@@ -21,9 +30,12 @@ export default function MobileFilters({ onCloseAction }: { onCloseAction?: () =>
     category,
   )
   const [selectedSort, setSelectedSort] = useState<string | undefined>(sort)
-  const [selectedRating, setSelectedRating] = useState<string | undefined>(rating)
+  const [selectedRating, setSelectedRating] = useState<string | undefined>(
+    rating,
+  )
   const router = useRouter()
 
+  // Toggle handlers — re-click deselects the active filter
   const toggleCategory = (cat: string) => {
     setSelectedCategory(prev => (prev === cat ? undefined : cat))
   }
