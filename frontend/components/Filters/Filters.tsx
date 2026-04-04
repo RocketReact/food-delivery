@@ -5,6 +5,7 @@ import { FiltersProps } from '../../types/types'
 import { buildHref } from '../../utils/buildHref'
 import { FiChevronDown } from 'react-icons/fi'
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 
 export default function Filters({
                                   shops = [],
@@ -13,7 +14,7 @@ export default function Filters({
                                   categories = [],
                                 }: FiltersProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false)
-
+  const router = useRouter()
   return (
     <div className={css.sideShops}>
       <ul className={css.categoriesInner}>
@@ -51,6 +52,12 @@ export default function Filters({
           ))}
         </ul>
       </div>
+      <button
+        onClick={() => router.push('/')}
+        className={`${css.btnClear} ${css.btnClearDesktop}`}
+      >
+        Clear Filters
+      </button>
     </div>
   )
 }
