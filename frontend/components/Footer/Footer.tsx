@@ -114,7 +114,7 @@ export default function Footer() {
         </li>
         <li>
           <a
-            href="https://fooddelivery/login"
+            href="/login"
             target="_blank"
             rel="noopener noreferrer"
           >
