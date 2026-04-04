@@ -7,7 +7,7 @@ import { useState } from 'react'
 import { FiChevronDown } from 'react-icons/fi'
 import { useRouter } from 'next/navigation'
 
-export default function MobileFilters({ onClose }: { onClose?: () => void }) {
+export default function MobileFilters({ onCloseAction }: { onCloseAction?: () => void }) {
   const {
     data: { shops, categories, storeName, category, sort },
   } = useFilters()
@@ -37,7 +37,7 @@ export default function MobileFilters({ onClose }: { onClose?: () => void }) {
         sort: selectedSort,
       }),
     )
-    onClose?.()
+    onCloseAction?.()
   }
   const clearFilters = () => {
     setSelectedShop(undefined)

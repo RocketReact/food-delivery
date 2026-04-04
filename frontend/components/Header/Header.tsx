@@ -78,7 +78,7 @@ export default function Header() {
                 <HiOutlineX size={28} />
               </button>
               <div className={css.filtersMenuWrap}>
-                <MobileFilters onClose={toggleMenu} />
+                <MobileFilters onCloseAction={toggleMenu} />
               </div>
             </motion.nav>
           </>
