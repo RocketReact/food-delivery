@@ -10,7 +10,8 @@ export async function getShops(): Promise<Shop[]> {
     )
     if (res.ok) return res.json()
     return []
-  } catch {
+  } catch (error) {
+    console.error('Failed to get shops list', error)
     return []
   }
 }
