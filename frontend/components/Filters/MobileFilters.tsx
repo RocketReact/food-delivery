@@ -9,15 +9,17 @@ import { useRouter } from 'next/navigation'
 
 export default function MobileFilters({ onClose }: { onClose?: () => void }) {
   const {
-    data: { shops, categories, storeName, category },
+    data: { shops, categories, storeName, category, sort },
   } = useFilters()
   const [isOpen, setIsOpen] = useState<boolean>(false)
+  const [isOpenSort, setIsOpenSort] = useState<boolean>(false)
   const [selectedShop, setSelectedShop] = useState<string | undefined>(
     storeName,
   )
   const [selectedCategory, setSelectedCategory] = useState<string | undefined>(
     category,
   )
+  const [selectedSort, setSelectedSort] = useState<string | undefined>(sort)
   const router = useRouter()
 
   const toggleCategory = (cat: string) => {
@@ -26,15 +28,21 @@ export default function MobileFilters({ onClose }: { onClose?: () => void }) {
   const toggleShop = (shop: string) => {
     setSelectedShop(prev => (prev === shop ? undefined : shop))
   }
+
   const applyFilters = () => {
     router.push(
-      buildHref({ storeName: selectedShop, category: selectedCategory }),
+      buildHref({
+        storeName: selectedShop,
+        category: selectedCategory,
+        sort: selectedSort,
+      }),
     )
     onClose?.()
   }
   const clearFilters = () => {
     setSelectedShop(undefined)
     setSelectedCategory(undefined)
+    setSelectedSort(undefined)
   }
   return (
     <div className={css.mobileShops}>
@@ -78,6 +86,56 @@ export default function MobileFilters({ onClose }: { onClose?: () => void }) {
             </li>
           ))}
       </ul>
+      <div className={css.mobileShopsList}>
+        <div
+          onClick={() => setIsOpenSort(prev => !prev)}
+          className={css.titlePlusIcon}
+        >
+          <p className={css.mobileTitle}>Sort By</p>
+          <FiChevronDown
+            size={20}
+            className={`${css.chevron} ${isOpenSort ? css.chevronOpen : ''}`}
+          />
+        </div>
+
+        {isOpenSort &&
+          <>
+            <label className={css.sortLabel}>
+              <input
+                className={css.radio}
+                type='radio'
+                name='mobile-sort'
+                value='price_asc'
+                checked={selectedSort === 'price_asc'}
+                onChange={() => setSelectedSort('price_asc')}
+              />
+              Price ↑
+            </label>
+            <label className={css.sortLabel}>
+              <input
+                className={css.radio}
+                type='radio'
+                name='mobile-sort'
+                value='price_desc'
+                checked={selectedSort === 'price_desc'}
+                onChange={() => setSelectedSort('price_desc')}
+              />
+              Price ↓
+            </label>
+            <label className={css.sortLabel}>
+              <input
+                className={css.radio}
+                type='radio'
+                name='mobile-sort'
+                value='name_asc'
+                checked={selectedSort === 'name_asc'}
+                onChange={() => setSelectedSort('name_asc')}
+              />
+              Name A→Z
+            </label>
+          </>
+        }
+      </div>
       <button onClick={applyFilters} className={css.btnApply}>
         Apply Filters
       </button>
