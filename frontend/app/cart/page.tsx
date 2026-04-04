@@ -49,7 +49,10 @@ export default function Cart() {
           totalPrice: total,
         }),
       })
-      if (!res.ok) throw new Error()
+      if (!res.ok) {
+        toast.error('Failed to place order')
+        return
+      }
       toast.success('Order placed! We will contact you shortly.', { duration: 6000 })
       clearCart()
     } catch {
