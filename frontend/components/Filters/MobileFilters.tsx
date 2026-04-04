@@ -9,10 +9,11 @@ import { useRouter } from 'next/navigation'
 
 export default function MobileFilters({ onCloseAction }: { onCloseAction?: () => void }) {
   const {
-    data: { shops, categories, storeName, category, sort },
+    data: { shops, categories, storeName, category, sort, rating },
   } = useFilters()
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [isOpenSort, setIsOpenSort] = useState<boolean>(false)
+  const [isOpenRatingFilter, setIsOpenRatingFilter] = useState<boolean>(false)
   const [selectedShop, setSelectedShop] = useState<string | undefined>(
     storeName,
   )
@@ -20,6 +21,7 @@ export default function MobileFilters({ onCloseAction }: { onCloseAction?: () =>
     category,
   )
   const [selectedSort, setSelectedSort] = useState<string | undefined>(sort)
+  const [selectedRating, setSelectedRating] = useState<string | undefined>(rating)
   const router = useRouter()
 
   const toggleCategory = (cat: string) => {
@@ -28,6 +30,9 @@ export default function MobileFilters({ onCloseAction }: { onCloseAction?: () =>
   const toggleShop = (shop: string) => {
     setSelectedShop(prev => (prev === shop ? undefined : shop))
   }
+  const toggleRating = (rating: string) => {
+    setSelectedRating(prev => (prev === rating ? undefined : rating))
+  }
 
   const applyFilters = () => {
     router.push(
@@ -35,6 +40,7 @@ export default function MobileFilters({ onCloseAction }: { onCloseAction?: () =>
         storeName: selectedShop,
         category: selectedCategory,
         sort: selectedSort,
+        rating: selectedRating,
       }),
     )
     onCloseAction?.()
@@ -43,11 +49,13 @@ export default function MobileFilters({ onCloseAction }: { onCloseAction?: () =>
     setSelectedShop(undefined)
     setSelectedCategory(undefined)
     setSelectedSort(undefined)
+    setSelectedRating(undefined)
+    router.push('/')
   }
   return (
     <div className={css.mobileShops}>
+      <p className={css.mobileTitle}>Shops:</p>
       <ul className={css.mobileShopsList}>
-        <p className={css.mobileTitle}>Shops:</p>
         {shops.map(shop => (
           <li key={shop._id}>
             <button
@@ -61,20 +69,74 @@ export default function MobileFilters({ onCloseAction }: { onCloseAction?: () =>
           </li>
         ))}
       </ul>
-      <ul className={css.mobileShopsList}>
+      <div className={css.mobileShopsList}>
         <div
-          onClick={() => setIsOpen(prev => !prev)}
+          onClick={() => setIsOpenRatingFilter(prev => !prev)}
           className={css.titlePlusIcon}
         >
-          <p className={css.mobileTitle}>Categories</p>
+          <p className={css.mobileTitle}>Shops rating by</p>
           <FiChevronDown
             size={20}
-            className={`${css.chevron} ${isOpen ? css.chevronOpen : ''}`}
+            className={`${css.chevron} ${isOpenRatingFilter ? css.chevronOpen : ''}`}
           />
         </div>
 
+        <div
+          className={`${css.categoriesWrapper} ${isOpenRatingFilter ? css.open : ''}`}
+        >
+          <div className={`${css.collapsible} ${css.collapsibleMobile}`}>
+            <label className={css.sortLabel}>
+              <input
+                className={css.radio}
+                type="radio"
+                name="mobile-filter-rating"
+                value="4"
+                checked={selectedRating === '4'}
+                readOnly
+                onClick={() => toggleRating('4')}
+              />
+              4.0 - 5.0
+            </label>
+            <label className={css.sortLabel}>
+              <input
+                className={css.radio}
+                type="radio"
+                name="mobile-filter-rating"
+                value="3"
+                checked={selectedRating === '3'}
+                readOnly
+                onClick={() => toggleRating('3')}
+              />
+              3.0 - 4.0
+            </label>
+            <label className={css.sortLabel}>
+              <input
+                className={css.radio}
+                type="radio"
+                name="mobile-filter-rating"
+                value="2"
+                checked={selectedRating === '2'}
+                readOnly
+                onClick={() => toggleRating('2')}
+              />
+              2.0 - 3.0
+            </label>
+          </div>
+        </div>
+      </div>
+      <div
+        onClick={() => setIsOpen(prev => !prev)}
+        className={css.titlePlusIcon}
+      >
+        <p className={css.mobileTitle}>Categories</p>
+        <FiChevronDown
+          size={20}
+          className={`${css.chevron} ${isOpen ? css.chevronOpen : ''}`}
+        />
+      </div>
+      <div className={css.mobileShopsList}>
         <div className={`${css.categoriesWrapper} ${isOpen ? css.open : ''}`}>
-          <div className={css.collapsible}>
+          <ul className={css.collapsible}>
             {categories.map(cat => (
               <li key={cat}>
                 <button
@@ -87,9 +149,9 @@ export default function MobileFilters({ onCloseAction }: { onCloseAction?: () =>
                 </button>
               </li>
             ))}
-          </div>
+          </ul>
         </div>
-      </ul>
+      </div>
       <div className={css.mobileShopsList}>
         <div
           onClick={() => setIsOpenSort(prev => !prev)}
@@ -113,7 +175,12 @@ export default function MobileFilters({ onCloseAction }: { onCloseAction?: () =>
                 name="mobile-sort"
                 value="price_asc"
                 checked={selectedSort === 'price_asc'}
-                onChange={() => setSelectedSort('price_asc')}
+                readOnly
+                onClick={() =>
+                  setSelectedSort(prev =>
+                    prev === 'price_asc' ? undefined : 'price_asc',
+                  )
+                }
               />
               Price ↑
             </label>
@@ -124,7 +191,12 @@ export default function MobileFilters({ onCloseAction }: { onCloseAction?: () =>
                 name="mobile-sort"
                 value="price_desc"
                 checked={selectedSort === 'price_desc'}
-                onChange={() => setSelectedSort('price_desc')}
+                readOnly
+                onClick={() =>
+                  setSelectedSort(prev =>
+                    prev === 'price_desc' ? undefined : 'price_desc',
+                  )
+                }
               />
               Price ↓
             </label>
@@ -135,7 +207,12 @@ export default function MobileFilters({ onCloseAction }: { onCloseAction?: () =>
                 name="mobile-sort"
                 value="name_asc"
                 checked={selectedSort === 'name_asc'}
-                onChange={() => setSelectedSort('name_asc')}
+                readOnly
+                onClick={() =>
+                  setSelectedSort(prev =>
+                    prev === 'name_asc' ? undefined : 'name_asc',
+                  )
+                }
               />
               Name A→Z
             </label>
