@@ -71,12 +71,15 @@
 
 /* Mobile menu shops */
 .mobileShops {
-    margin: 4rem auto;
+    display: flex;
+    flex-direction: column;
+    margin: 4rem auto 0;
     width: 100%;
     max-width: 350px;
-    padding: 0 1rem;
+    padding: 0 1rem 2rem;
     overflow-y: auto;
-    height: 100dvh;
+    max-height: calc(100dvh - 4rem);
+
 }
 
 .mobileTitle {
@@ -90,6 +93,7 @@
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    margin-bottom: 1.5rem;
 }
 
 .mobileShopLink {
@@ -100,10 +104,32 @@
     text-align: center;
     font-size: 0.95rem;
     transition: background 0.2s;
+    border: none;
+    width: 100%;
 }
 
 .mobileShopLink:hover {
     background: #e8e8e8;
+    cursor: pointer;
+}
+
+.btnApply {
+    border: none;
+    border-radius: 50px;
+    background: #fff;
+}
+
+.btnApply {
+    border: none;
+    width: 100%;
+    padding: 0.75rem;
+    background: #df2727;
+    border-radius: 50px;
+    color: #fff;
+}
+
+.btnApply:hover {
+    background: #e64949;
     cursor: pointer;
 }
 

@@ -8,8 +8,9 @@ import React from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { AnimatePresence, motion } from 'framer-motion'
+import MobileFilters from '../Filters/MobileFilters'
 
-export default function Header({ shopFilters }: { shopFilters?: React.ReactNode }) {
+export default function Header() {
   const pathname = usePathname()
   const [isOpen, setIsOpen] = React.useState(false)
 
@@ -76,9 +77,8 @@ export default function Header({ shopFilters }: { shopFilters?: React.ReactNode 
               >
                 <HiOutlineX size={28} />
               </button>
-              <div className={css.filtersMenuWrap} onClick={toggleMenu}>
-                {' '}
-                {shopFilters}
+              <div className={css.filtersMenuWrap}>
+                <MobileFilters onClose={toggleMenu} />
               </div>
             </motion.nav>
           </>
