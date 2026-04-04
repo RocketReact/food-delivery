@@ -11,7 +11,7 @@ export default function MobileFilters({ onCloseAction }: { onCloseAction?: () =>
   const {
     data: { shops, categories, storeName, category, sort, rating },
   } = useFilters()
-  const [isOpen, setIsOpen] = useState<boolean>(false)
+  const [isOpenCategories, setIsOpenCategories] = useState<boolean>(false)
   const [isOpenSort, setIsOpenSort] = useState<boolean>(false)
   const [isOpenRatingFilter, setIsOpenRatingFilter] = useState<boolean>(false)
   const [selectedShop, setSelectedShop] = useState<string | undefined>(
@@ -125,17 +125,19 @@ export default function MobileFilters({ onCloseAction }: { onCloseAction?: () =>
         </div>
       </div>
       <div
-        onClick={() => setIsOpen(prev => !prev)}
+        onClick={() => setIsOpenCategories(prev => !prev)}
         className={css.titlePlusIcon}
       >
         <p className={css.mobileTitle}>Categories</p>
         <FiChevronDown
           size={20}
-          className={`${css.chevron} ${isOpen ? css.chevronOpen : ''}`}
+          className={`${css.chevron} ${isOpenCategories ? css.chevronOpen : ''}`}
         />
       </div>
       <div className={css.mobileShopsList}>
-        <div className={`${css.categoriesWrapper} ${isOpen ? css.open : ''}`}>
+        <div
+          className={`${css.categoriesWrapper} ${isOpenCategories ? css.open : ''}`}
+        >
           <ul className={css.collapsible}>
             {categories.map(cat => (
               <li key={cat}>
