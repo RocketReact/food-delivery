@@ -13,9 +13,11 @@ export default function Filters({
                                   category,
                                   categories = [],
                                   sort,
+                                  rating,
                                 }: FiltersProps) {
-  const [isOpen, setIsOpen] = useState<boolean>(false)
+  const [isOpenCategories, setIsOpenCategories] = useState<boolean>(false)
   const [isOpenSort, setIsOpenSort] = useState<boolean>(false)
+  const [isOpenRatingDesktopFilter, setIsOpenRatingDesktopFilter] = useState<boolean>(false)
   const router = useRouter()
   return (
     <div className={css.sideShops}>
@@ -24,7 +26,7 @@ export default function Filters({
         {shops.map(shop => (
           <li key={shop._id}>
             <Link
-              href={buildHref({ storeName: shop.name, category, sort })}
+              href={buildHref({ storeName: shop.name, category, sort, rating })}
               className={storeName === shop.name ? css.active : ''}
             >
               {shop.name}
@@ -33,21 +35,23 @@ export default function Filters({
         ))}
       </ul>
       <div
-        onClick={() => setIsOpen(prev => !prev)}
+        onClick={() => setIsOpenCategories(prev => !prev)}
         className={css.titlePlusIcon}
       >
         <p className={css.titleFilters}>Categories</p>
         <FiChevronDown
           size={20}
-          className={`${css.chevron} ${isOpen ? css.chevronOpen : ''}`}
+          className={`${css.chevron} ${isOpenCategories ? css.chevronOpen : ''}`}
         />
       </div>
-      <div className={`${css.categoriesWrapper} ${isOpen ? css.open : ''}`}>
+      <div
+        className={`${css.categoriesWrapper} ${isOpenCategories ? css.open : ''}`}
+      >
         <ul className={`${css.categoriesInner} ${css.collapsible}`}>
           {categories.map(cat => (
             <li key={cat}>
               <Link
-                href={buildHref({ storeName, category: cat, sort })}
+                href={buildHref({ storeName, category: cat, sort, rating })}
                 className={cat === category ? css.active : ''}
               >
                 {cat}
@@ -60,7 +64,7 @@ export default function Filters({
         onClick={() => setIsOpenSort(prev => !prev)}
         className={css.titlePlusIcon}
       >
-        <p className={css.titleFilters}>Sort By</p>
+        <p className={css.titleFilters}> Sort products by</p>
         <FiChevronDown
           size={20}
           className={`${css.chevron} ${isOpenSort ? css.chevronOpen : ''}`}
@@ -112,6 +116,68 @@ export default function Filters({
               }
             />
             Name A→Z
+          </label>
+        </div>
+      </div>
+
+      <div
+        onClick={() => setIsOpenRatingDesktopFilter(prev => !prev)}
+        className={css.titlePlusIcon}
+      >
+        <p className={css.titleFilters}> Filter shop by rating</p>
+        <FiChevronDown
+          size={20}
+          className={`${css.chevron} ${isOpenRatingDesktopFilter ? css.chevronOpen : ''}`}
+        />
+      </div>
+      <div
+        className={`${css.categoriesWrapper} ${isOpenRatingDesktopFilter ? css.open : ''}`}
+      >
+        <div className={css.collapsible}>
+          <label className={css.sortLabel}>
+            <input
+              className={css.radio}
+              type="radio"
+              name="ratingDesktopFilter"
+              value="4"
+              checked={rating === '4'}
+              onChange={() =>
+                router.push(
+                  buildHref({ storeName, category, sort, rating: '4' }),
+                )
+              }
+            />
+            4.0 - 5.0
+          </label>
+          <label className={css.sortLabel}>
+            <input
+              className={css.radio}
+              type="radio"
+              name="ratingDesktopFilter"
+              value="3"
+              checked={rating === '3'}
+              onChange={() =>
+                router.push(
+                  buildHref({ storeName, category, sort, rating: '3' }),
+                )
+              }
+            />
+            3.0 - 4.0
+          </label>
+          <label className={css.sortLabel}>
+            <input
+              className={css.radio}
+              type="radio"
+              name="ratingDesktopFilter"
+              value="2"
+              checked={rating === '2'}
+              onChange={() =>
+                router.push(
+                  buildHref({ storeName, category, sort, rating: '2' }),
+                )
+              }
+            />
+            2.0 - 3.0
           </label>
         </div>
       </div>

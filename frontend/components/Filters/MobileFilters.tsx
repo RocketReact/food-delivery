@@ -89,21 +89,22 @@ export default function MobileFilters({ onCloseAction }: { onCloseAction?: () =>
             ))}
           </div>
         </div>
-        
       </ul>
       <div className={css.mobileShopsList}>
         <div
           onClick={() => setIsOpenSort(prev => !prev)}
           className={css.titlePlusIcon}
         >
-          <p className={css.mobileTitle}>Sort By</p>
+          <p className={css.mobileTitle}>Sort products by</p>
           <FiChevronDown
             size={20}
             className={`${css.chevron} ${isOpenSort ? css.chevronOpen : ''}`}
           />
         </div>
 
-        <div className={`${css.categoriesWrapper} ${isOpenSort ? css.open : ''}`}>
+        <div
+          className={`${css.categoriesWrapper} ${isOpenSort ? css.open : ''}`}
+        >
           <div className={`${css.collapsible} ${css.collapsibleMobile}`}>
             <label className={css.sortLabel}>
               <input

@@ -10,10 +10,10 @@ import { getCategories } from '../services/getCategories'
 export default async function Home({
                                      searchParams,
                                    }: {
-  searchParams: Promise<{ storeName?: string; category?: string; sort?: string }>
+  searchParams: Promise<{ storeName?: string; category?: string; sort?: string, rating?: string }>
 }) {
-  const { storeName, category, sort } = await searchParams
-  const shops = await getShops()
+  const { storeName, category, sort, rating } = await searchParams
+  const shops = await getShops(rating)
   const products = await getProducts({ storeName, category, sort })
   const categories = await getCategories()
   return (
@@ -24,6 +24,7 @@ export default async function Home({
         storeName={storeName}
         category={category}
         sort={sort}
+        rating={rating}
       />
       <Filters
         shops={shops}
@@ -31,6 +32,7 @@ export default async function Home({
         category={category}
         categories={categories}
         sort={sort}
+        rating={rating}
       />
 
       <div className={css.grid}>

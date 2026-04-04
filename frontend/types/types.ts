@@ -10,6 +10,7 @@ export type FiltersProps = {
   category?: string
   categories?: string[]
   sort?: string
+  rating?: string
 }
 
 export type FiltersData = {
@@ -17,7 +18,8 @@ export type FiltersData = {
   categories: string[]
   storeName?: string
   category?: string
-  sort?: string
+  sort?: string,
+  rating?: string
 }
 
 export type Filters = {
