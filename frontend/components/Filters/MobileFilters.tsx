@@ -72,19 +72,24 @@ export default function MobileFilters({ onClose }: { onClose?: () => void }) {
             className={`${css.chevron} ${isOpen ? css.chevronOpen : ''}`}
           />
         </div>
-        {isOpen &&
-          categories.map(cat => (
-            <li key={cat}>
-              <button
-                onClick={() => toggleCategory(cat)}
-                className={`${css.mobileShopLink} ${
-                  selectedCategory === cat ? css.active : ''
-                }`}
-              >
-                {cat}
-              </button>
-            </li>
-          ))}
+
+        <div className={`${css.categoriesWrapper} ${isOpen ? css.open : ''}`}>
+          <div className={css.collapsible}>
+            {categories.map(cat => (
+              <li key={cat}>
+                <button
+                  onClick={() => toggleCategory(cat)}
+                  className={`${css.mobileShopLink} ${
+                    selectedCategory === cat ? css.active : ''
+                  }`}
+                >
+                  {cat}
+                </button>
+              </li>
+            ))}
+          </div>
+        </div>
+        
       </ul>
       <div className={css.mobileShopsList}>
         <div
@@ -98,14 +103,14 @@ export default function MobileFilters({ onClose }: { onClose?: () => void }) {
           />
         </div>
 
-        {isOpenSort &&
-          <>
+        <div className={`${css.categoriesWrapper} ${isOpenSort ? css.open : ''}`}>
+          <div className={`${css.collapsible} ${css.collapsibleMobile}`}>
             <label className={css.sortLabel}>
               <input
                 className={css.radio}
-                type='radio'
-                name='mobile-sort'
-                value='price_asc'
+                type="radio"
+                name="mobile-sort"
+                value="price_asc"
                 checked={selectedSort === 'price_asc'}
                 onChange={() => setSelectedSort('price_asc')}
               />
@@ -114,9 +119,9 @@ export default function MobileFilters({ onClose }: { onClose?: () => void }) {
             <label className={css.sortLabel}>
               <input
                 className={css.radio}
-                type='radio'
-                name='mobile-sort'
-                value='price_desc'
+                type="radio"
+                name="mobile-sort"
+                value="price_desc"
                 checked={selectedSort === 'price_desc'}
                 onChange={() => setSelectedSort('price_desc')}
               />
@@ -125,16 +130,16 @@ export default function MobileFilters({ onClose }: { onClose?: () => void }) {
             <label className={css.sortLabel}>
               <input
                 className={css.radio}
-                type='radio'
-                name='mobile-sort'
-                value='name_asc'
+                type="radio"
+                name="mobile-sort"
+                value="name_asc"
                 checked={selectedSort === 'name_asc'}
                 onChange={() => setSelectedSort('name_asc')}
               />
               Name A→Z
             </label>
-          </>
-        }
+          </div>
+        </div>
       </div>
       <button onClick={applyFilters} className={css.btnApply}>
         Apply Filters

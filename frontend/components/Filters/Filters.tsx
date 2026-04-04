@@ -15,6 +15,7 @@ export default function Filters({
                                   sort,
                                 }: FiltersProps) {
   const [isOpen, setIsOpen] = useState<boolean>(false)
+  const [isOpenSort, setIsOpenSort] = useState<boolean>(false)
   const router = useRouter()
   return (
     <div className={css.sideShops}>
@@ -55,65 +56,64 @@ export default function Filters({
           ))}
         </ul>
       </div>
-      <div className={css.categoriesInner}>
+      <div
+        onClick={() => setIsOpenSort(prev => !prev)}
+        className={css.titlePlusIcon}
+      >
         <p className={css.titleFilters}>Sort By</p>
-        <label className={css.sortLabel}>
-          <input
-            className={css.radio}
-            type="radio"
-            name="sort"
-            value="price_asc"
-            checked={sort === 'price_asc'}
-            onChange={() =>
-              router.push(
-                buildHref({
-                  storeName,
-                  category,
-                  sort: 'price_asc',
-                }),
-              )
-            }
-          />
-          Price ↑
-        </label>
-        <label className={css.sortLabel}>
-          <input
-            className={css.radio}
-            type="radio"
-            name="sort"
-            value="price_desc"
-            checked={sort === 'price_desc'}
-            onChange={() =>
-              router.push(
-                buildHref({
-                  storeName,
-                  category,
-                  sort: 'price_desc',
-                }),
-              )
-            }
-          />
-          Price ↓
-        </label>
-        <label className={css.sortLabel}>
-          <input
-            className={css.radio}
-            type="radio"
-            name="sort"
-            value="name_asc"
-            checked={sort === 'name_asc'}
-            onChange={() =>
-              router.push(
-                buildHref({
-                  storeName,
-                  category,
-                  sort: 'name_asc',
-                }),
-              )
-            }
-          />
-          Name A→Z
-        </label>
+        <FiChevronDown
+          size={20}
+          className={`${css.chevron} ${isOpenSort ? css.chevronOpen : ''}`}
+        />
+      </div>
+      <div className={`${css.categoriesWrapper} ${isOpenSort ? css.open : ''}`}>
+        <div className={css.collapsible}>
+          <label className={css.sortLabel}>
+            <input
+              className={css.radio}
+              type="radio"
+              name="sort"
+              value="price_asc"
+              checked={sort === 'price_asc'}
+              onChange={() =>
+                router.push(
+                  buildHref({ storeName, category, sort: 'price_asc' }),
+                )
+              }
+            />
+            Price ↑
+          </label>
+          <label className={css.sortLabel}>
+            <input
+              className={css.radio}
+              type="radio"
+              name="sort"
+              value="price_desc"
+              checked={sort === 'price_desc'}
+              onChange={() =>
+                router.push(
+                  buildHref({ storeName, category, sort: 'price_desc' }),
+                )
+              }
+            />
+            Price ↓
+          </label>
+          <label className={css.sortLabel}>
+            <input
+              className={css.radio}
+              type="radio"
+              name="sort"
+              value="name_asc"
+              checked={sort === 'name_asc'}
+              onChange={() =>
+                router.push(
+                  buildHref({ storeName, category, sort: 'name_asc' }),
+                )
+              }
+            />
+            Name A→Z
+          </label>
+        </div>
       </div>
       <button
         onClick={() => router.push('/')}
