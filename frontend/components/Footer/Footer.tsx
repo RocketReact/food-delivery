@@ -78,7 +78,7 @@ export default function Footer() {
         <h4>Links of interest</h4>
         <li>
           <a
-            href="https://fooddelivery/about"
+            href="/about"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -87,7 +87,7 @@ export default function Footer() {
         </li>
         <li>
           <a
-            href="https://fooddelivery/faq"
+            href="/faq"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -96,7 +96,7 @@ export default function Footer() {
         </li>
         <li>
           <a
-            href="https://fooddelivery/frime"
+            href="/frime"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -105,7 +105,7 @@ export default function Footer() {
         </li>
         <li>
           <a
-            href="https://fooddelivery/blog"
+            href="/blog"
             target="_blank"
             rel="noopener noreferrer"
           >
