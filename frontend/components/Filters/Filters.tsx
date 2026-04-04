@@ -39,7 +39,7 @@ export default function Filters({
         onClick={() => setIsOpenRatingDesktopFilter(prev => !prev)}
         className={css.titlePlusIcon}
       >
-        <p className={css.titleFilters}> Shop by rating</p>
+        <p className={css.titleFilters}> Shops by rating</p>
         <FiChevronDown
           size={20}
           className={`${css.chevron} ${isOpenRatingDesktopFilter ? css.chevronOpen : ''}`}
