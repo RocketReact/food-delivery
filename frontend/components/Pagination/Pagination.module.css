@@ -1,0 +1,24 @@
+.mainPaginationContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+
+    gap: 8px;
+}
+
+.mainPaginationContainer button {
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.mainPaginationContainer button:disabled {
+    opacity: 0.8;
+    cursor: not-allowed;
+}
+
+.active {
+    background: #f16464;
+    color: #fff;
+}

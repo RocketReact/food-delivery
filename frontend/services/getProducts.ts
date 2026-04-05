@@ -12,7 +12,9 @@ export interface PaginatedProducts {
   }
 }
 
-export async function getProducts(filters?: Filters): Promise<PaginatedProducts> {
+export async function getProducts(
+  filters?: Filters,
+): Promise<PaginatedProducts> {
   const params = new URLSearchParams()
   if (filters?.storeName) params.set('storeName', filters.storeName)
   if (filters?.category) params.set('category', filters.category)
@@ -25,9 +27,29 @@ export async function getProducts(filters?: Filters): Promise<PaginatedProducts>
     const res = await fetch(url, { cache: 'no-cache' })
     if (res.ok) return res.json()
     console.error('Failed to fetch products', res.status)
-    return { data: [], pagination: { page: 1, limit: 10, total: 0, totalPages: 0, hasNextPage: false, hasPreviousPage: false } }
+    return {
+      data: [],
+      pagination: {
+        page: 1,
+        limit: 10,
+        total: 0,
+        totalPages: 0,
+        hasNextPage: false,
+        hasPreviousPage: false,
+      },
+    }
   } catch (error) {
     console.error('Error fetching products', error)
-    return { data: [], pagination: { page: 1, limit: 10, total: 0, totalPages: 0, hasNextPage: false, hasPreviousPage: false } }
+    return {
+      data: [],
+      pagination: {
+        page: 1,
+        limit: 10,
+        total: 0,
+        totalPages: 0,
+        hasNextPage: false,
+        hasPreviousPage: false,
+      },
+    }
   }
 }

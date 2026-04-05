@@ -6,6 +6,7 @@ import ProductCard from '../components/AddToCard/AddToCard.client'
 import { getShops } from '../services/getShops'
 import { getProducts } from '../services/getProducts'
 import { getCategories } from '../services/getCategories'
+import Pagination from '../components/Pagination/Pagination.client'
 
 export default async function Home({
                                      searchParams,
@@ -14,7 +15,12 @@ export default async function Home({
 }) {
   const { storeName, category, sort, rating, page } = await searchParams
   const shops = await getShops(rating)
-  const { data: products, pagination } = await getProducts({ storeName, category, sort, page: page ? parseInt(page) : 1 })
+  const { data: products, pagination } = await getProducts({
+    storeName,
+    category,
+    sort,
+    page: page ? parseInt(page) : 1,
+  })
   const categories = await getCategories()
   return (
     <div className={css.mainHomeContainer}>
@@ -35,28 +41,34 @@ export default async function Home({
         rating={rating}
       />
 
-      <div className={css.grid}>
-        {products.length > 0 ? (
-          products.map((product, index) => (
-            <div key={product._id} className={css.product}>
-              <div className={css.imageWrapper}>
-                <Image
-                  src={product.image || '/placeholder.png'}
-                  fill
-                  sizes="(min-width: 768px) 50vw"
-                  alt={product.name}
-                  priority={index < 3}
-                  style={{ objectFit: 'cover', borderRadius: '8px' }}
-                />
+      <div className={css.gridPaginationContainer}>
+        <div className={css.grid}>
+          {products.length > 0 ? (
+            products.map((product, index) => (
+              <div key={product._id} className={css.product}>
+                <div className={css.imageWrapper}>
+                  <Image
+                    src={product.image || '/placeholder.png'}
+                    fill
+                    sizes="(min-width: 768px) 50vw"
+                    alt={product.name}
+                    priority={index < 3}
+                    style={{ objectFit: 'cover', borderRadius: '8px' }}
+                  />
+                </div>
+                <p>{product.name}</p>
+                <p className={css.price}>{product.price}$</p>
+                <ProductCard product={product} className={css.buyBtn} />{' '}
               </div>
-              <p>{product.name}</p>
-              <p className={css.price}>{product.price}$</p>
-              <ProductCard product={product} className={css.buyBtn} />{' '}
-            </div>
-          ))
-        ) : (
-          <p className={css.notFound}>Products not found</p>
-        )}
+            ))
+          ) : (
+            <p className={css.notFound}>Products not found</p>
+          )}
+        </div>
+        <Pagination
+          totalPages={pagination.totalPages}
+          currentPage={pagination.page}
+        />
       </div>
     </div>
   )

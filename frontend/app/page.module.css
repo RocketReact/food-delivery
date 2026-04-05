@@ -10,6 +10,10 @@
     }
 }
 
+.gridPaginationContainer {
+    width: 100%;
+}
+
 .grid {
     display: grid;
     gap: 1rem;
