@@ -48,7 +48,7 @@ export default function Header() {
         >
           <HiOutlineMenu size={30} />
         </button>
-        <Link href="/login" className={css.loginLink}>
+        <Link href="/login" className={css.loginLink} aria-label="Login">
           <HiOutlineArrowRightOnRectangle size={30} />
         </Link>
       </div>

@@ -25,6 +25,7 @@ export default function Footer() {
               href="https://instagram.com/fooddelivery"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Instagram"
             >
               <FaInstagram size={30} />
             </a>
@@ -34,6 +35,7 @@ export default function Footer() {
               href="https://facebook/fooddelivery"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Facebook"
             >
               <FaFacebookSquare size={30} />
             </a>
