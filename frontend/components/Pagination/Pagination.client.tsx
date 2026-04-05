@@ -17,7 +17,8 @@ export default function Pagination({
   const goToPage = (page: number) => {
     const params = new URLSearchParams(searchParams.toString())
     params.set('page', page.toString())
-    router.push(`?${params.toString()}`)
+    router.push(`?${params.toString()}`, { scroll: false })
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
   if (totalPages <= 1) return null
   return (
