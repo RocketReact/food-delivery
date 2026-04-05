@@ -10,7 +10,11 @@
     border: none;
     padding: 0.5rem 1rem;
     border-radius: 6px;
+}
+
+.mainPaginationContainer button:hover {
     cursor: pointer;
+    background: #f6d3d3;
 }
 
 .mainPaginationContainer button:disabled {
