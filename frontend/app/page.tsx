@@ -10,11 +10,11 @@ import { getCategories } from '../services/getCategories'
 export default async function Home({
                                      searchParams,
                                    }: {
-  searchParams: Promise<{ storeName?: string; category?: string; sort?: string, rating?: string }>
+  searchParams: Promise<{ storeName?: string; category?: string; sort?: string; rating?: string; page?: string }>
 }) {
-  const { storeName, category, sort, rating } = await searchParams
+  const { storeName, category, sort, rating, page } = await searchParams
   const shops = await getShops(rating)
-  const products = await getProducts({ storeName, category, sort })
+  const { data: products, pagination } = await getProducts({ storeName, category, sort, page: page ? parseInt(page) : 1 })
   const categories = await getCategories()
   return (
     <div className={css.mainHomeContainer}>
