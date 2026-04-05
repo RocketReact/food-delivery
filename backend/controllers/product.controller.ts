@@ -66,7 +66,7 @@ export const getShops = async (req: Request, res: Response) => {
   const filter: Record<string, unknown> = {};
   if (rating) {
     const r = Number(rating);
-    filter.rating = { $gte: r, $lt: r + 1 };
+    filter.rating = { $gte: r };
   }
   try {
     const shops = await Store.find(filter).lean();
