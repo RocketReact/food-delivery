@@ -10,6 +10,7 @@
     border: none;
     padding: 0.5rem 1rem;
     border-radius: 6px;
+    color: #333;
 }
 
 .mainPaginationContainer button:hover {

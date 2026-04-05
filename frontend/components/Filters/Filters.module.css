@@ -39,6 +39,7 @@
     transition: background 0.2s;
     border: none;
     width: 100%;
+    color: #333;
 }
 
 .mobileShopLink:hover {
@@ -195,7 +196,7 @@
     padding: 0.5rem 2rem;
     border-radius: 50px;
     text-decoration: none;
-    color: inherit;
+    color: #333;
 }
 
 .categoriesInner > li > a:hover {
