@@ -61,7 +61,7 @@ export default function Filters({
               name="ratingDesktopFilter"
               value="4"
               checked={rating === '4'}
-              readOnly
+              onChange={() => {}}
               onClick={() =>
                 router.push(
                   buildHref({
@@ -82,7 +82,7 @@ export default function Filters({
               name="ratingDesktopFilter"
               value="3"
               checked={rating === '3'}
-              readOnly
+              onChange={() => {}}
               onClick={() =>
                 router.push(
                   buildHref({
@@ -103,7 +103,7 @@ export default function Filters({
               name="ratingDesktopFilter"
               value="2"
               checked={rating === '2'}
-              readOnly
+              onChange={() => {}}
               onClick={() =>
                 router.push(
                   buildHref({
@@ -169,7 +169,7 @@ export default function Filters({
               name="sort"
               value="price_asc"
               checked={sort === 'price_asc'}
-              readOnly
+              onChange={() => {}}
               onClick={() =>
                 router.push(
                   buildHref({
@@ -190,7 +190,7 @@ export default function Filters({
               name="sort"
               value="price_desc"
               checked={sort === 'price_desc'}
-              readOnly
+              onChange={() => {}}
               onClick={() =>
                 router.push(
                   buildHref({
@@ -211,7 +211,7 @@ export default function Filters({
               name="sort"
               value="name_asc"
               checked={sort === 'name_asc'}
-              readOnly
+              onChange={() => {}}
               onClick={() =>
                 router.push(
                   buildHref({

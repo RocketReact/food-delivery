@@ -12,7 +12,7 @@ export default function Footer() {
             <a href="mailto:support@fooddelivery.com">support@fooddelivery.com</a>
           </li>
           <li>
-            <a href="tel:+1 (484) 123-4567">+1 (484) 123-4567</a>
+            <a href="tel:+14841234567">+1 (484) 123-4567</a>
           </li>
           <li>
             <p>1126 Queens Hwy, Long Beach, CA 90802, United States</p>

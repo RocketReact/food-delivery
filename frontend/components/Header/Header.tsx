@@ -31,7 +31,7 @@ export default function Header() {
           </li>
         </ul>
 
-        <Link href="/cart" className={css.cart}>
+        <Link href="/cart" className={css.cart} aria-label="Shopping cart">
           <HiOutlineShoppingCart size={25} color="#df2727" />
         </Link>
 
