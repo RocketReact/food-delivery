@@ -27,6 +27,7 @@ export type Filters = {
   category?: string,
   sort?: string,
   page?: number,
+  rating?: string,
 }
 export type Product = {
   _id: string

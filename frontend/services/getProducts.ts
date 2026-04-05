@@ -19,6 +19,7 @@ export async function getProducts(
   if (filters?.storeName) params.set('storeName', filters.storeName)
   if (filters?.category) params.set('category', filters.category)
   if (filters?.sort) params.set('sort', filters.sort)
+  if (filters?.rating) params.set('rating', filters.rating)
   if (filters?.page) params.set('page', filters.page.toString())
   const query = params.toString()
   const url = `${process.env.NEXT_PUBLIC_URL_SERVER}/products${query ? `?${query}` : ''}`

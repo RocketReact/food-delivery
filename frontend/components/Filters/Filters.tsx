@@ -26,21 +26,17 @@ export default function Filters({
       <ul className={css.categoriesInner}>
         {shops.map(shop => (
           <li key={shop._id}>
-            <a
-              onClick={() =>
-                router.push(
-                  buildHref({
-                    storeName: storeName === shop.name ? undefined : shop.name,
-                    category,
-                    sort,
-                    rating,
-                  }),
-                )
-              }
+            <Link
+              href={buildHref({
+                storeName: storeName === shop.name ? undefined : shop.name,
+                category,
+                sort,
+                rating,
+              })}
               className={storeName === shop.name ? css.active : ''}
             >
               {shop.name}
-            </a>
+            </Link>
           </li>
         ))}
       </ul>
@@ -139,21 +135,17 @@ export default function Filters({
         <ul className={`${css.categoriesInner} ${css.collapsible}`}>
           {categories.map(cat => (
             <li key={cat}>
-              <a
-                onClick={() =>
-                  router.push(
-                    buildHref({
-                      storeName,
-                      category: category === cat ? undefined : cat,
-                      sort,
-                      rating,
-                    }),
-                  )
-                }
+              <Link
+                href={buildHref({
+                  storeName,
+                  category: category === cat ? undefined : cat,
+                  sort,
+                  rating,
+                })}
                 className={cat === category ? css.active : ''}
               >
                 {cat}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>

@@ -23,13 +23,21 @@ export const getProducts = async (req: Request, res: Response) => {
   const limit = 10;
   const skip = (page - 1) * limit;
   try {
-    const { storeName, category, sort } = req.query;
+    const { storeName, category, sort, rating } = req.query;
     const filter: Record<string, unknown> = {};
     if (storeName) {
       filter.storeName = Array.isArray(storeName) ? { $in: storeName } : storeName;
     }
     if (category) {
       filter.category = Array.isArray(category) ? { $in: category } : category;
+    }
+    if (rating) {
+      const r = Number(rating);
+      const shops = await Store.find({ rating: { $gte: r, $lte: r + 1 } }).lean();
+      const shopNames = shops.map(s => s.name);
+      filter.storeName = filter.storeName
+        ? { $in: (Array.isArray((filter.storeName as any).$in) ? (filter.storeName as any).$in : [filter.storeName]).filter((n: string) => shopNames.includes(n)) }
+        : { $in: shopNames };
     }
 
     let sortOption: Record<string, 1 | -1> = {};
@@ -82,7 +90,7 @@ export const getShops = async (req: Request, res: Response) => {
   const filter: Record<string, unknown> = {};
   if (rating) {
     const r = Number(rating);
-    filter.rating = { $gte: r };
+    filter.rating = { $gte: r, $lte: r + 1 };
   }
   try {
     const shops = await Store.find(filter).lean();

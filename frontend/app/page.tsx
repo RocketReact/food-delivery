@@ -19,6 +19,7 @@ export default async function Home({
     storeName,
     category,
     sort,
+    rating,
     page: page ? parseInt(page) : 1,
   })
   const categories = await getCategories()
