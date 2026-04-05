@@ -19,6 +19,9 @@ export const createProduct = async (req: Request, res: Response) => {
 };
 
 export const getProducts = async (req: Request, res: Response) => {
+  const page = Math.max(1, parseInt(req.query.page as string) || 1);
+  const limit = 10;
+  const skip = (page - 1) * limit;
   try {
     const { storeName, category, sort } = req.query;
     const filter: Record<string, unknown> = {};
@@ -45,8 +48,21 @@ export const getProducts = async (req: Request, res: Response) => {
         sortOption = { createdAt: -1 };
     }
 
-    const products = await Product.find(filter).sort(sortOption).limit(20).lean();
-    res.status(200).json(products);
+    const [products, total] = await Promise.all([
+      Product.find(filter).sort(sortOption).skip(skip).limit(limit).lean(),
+      Product.countDocuments(filter)
+    ]);
+    res.status(200).json({
+      data: products,
+      pagination: {
+        page,
+        limit,
+        total,
+        totalPages: Math.ceil(total / limit),
+        hasNextPage: page * limit < total,
+        hasPreviousPage: page > 1
+      }
+    });
   } catch (error: any) {
     res.status(500).json({ message: "Failed to fetch products", details: error.message });
   }
