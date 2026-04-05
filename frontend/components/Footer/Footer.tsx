@@ -5,18 +5,20 @@ import { FaInstagram, FaFacebookSquare, FaApple } from 'react-icons/fa'
 export default function Footer() {
   return (
     <footer className={css.footerContainer}>
-      <ul className={css.blockContainerFooter}>
+      <div className={css.blockContainerFooter}>
         <h4>Contacts</h4>
-        <li>
-          <a href="mailto:support@fooddelivery.com">support@fooddelivery.com</a>
-        </li>
-        <li>
-          <a href="tel:+1 (484) 123-4567">+1 (484) 123-4567</a>
-        </li>
-        <li>
-          <p>1126 Queens Hwy, Long Beach, CA 90802, United States</p>
-        </li>
-      </ul>
+        <ul className={css.footerList}>
+          <li>
+            <a href="mailto:support@fooddelivery.com">support@fooddelivery.com</a>
+          </li>
+          <li>
+            <a href="tel:+1 (484) 123-4567">+1 (484) 123-4567</a>
+          </li>
+          <li>
+            <p>1126 Queens Hwy, Long Beach, CA 90802, United States</p>
+          </li>
+        </ul>
+      </div>
       <div className={css.blockContainerFooter}>
         <h4 className={css.nowrap}>Follow us</h4>
         <ul className={css.row}>
@@ -76,54 +78,56 @@ export default function Footer() {
         </ul>
       </div>
 
-      <ul className={css.blockContainerFooter}>
+      <div className={css.blockContainerFooter}>
         <h4>Links of interest</h4>
-        <li>
-          <a
-            href="/about"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            About us
-          </a>
-        </li>
-        <li>
-          <a
-            href="/faq"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            FAQ
-          </a>
-        </li>
-        <li>
-          <a
-            href="/frime"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Food Delivery Prime
-          </a>
-        </li>
-        <li>
-          <a
-            href="/blog"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Blog
-          </a>
-        </li>
-        <li>
-          <a
-            href="/login"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Log in
-          </a>
-        </li>
-      </ul>
+        <ul className={css.footerList}>
+          <li>
+            <a
+              href="/about"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              About us
+            </a>
+          </li>
+          <li>
+            <a
+              href="/faq"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              FAQ
+            </a>
+          </li>
+          <li>
+            <a
+              href="/frime"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Food Delivery Prime
+            </a>
+          </li>
+          <li>
+            <a
+              href="/blog"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Blog
+            </a>
+          </li>
+          <li>
+            <a
+              href="/login"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Log in
+            </a>
+          </li>
+        </ul>
+      </div>
     </footer>
   )
 }

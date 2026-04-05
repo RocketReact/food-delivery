@@ -22,8 +22,8 @@ export default function Filters({
   const router = useRouter()
   return (
     <div className={css.sideShops}>
+      <p className={css.titleFilters}>Shops:</p>
       <ul className={css.categoriesInner}>
-        <p className={css.titleFilters}>Shops:</p>
         {shops.map(shop => (
           <li key={shop._id}>
             <a
