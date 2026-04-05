@@ -26,6 +26,7 @@ export type Filters = {
   storeName?: string,
   category?: string,
   sort?: string,
+  page?: number,
 }
 export type Product = {
   _id: string
