@@ -1,3 +1,9 @@
 .mainContainerHistory {
     min-height: 100dvh;
 }
+
+.imageWrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3/2;
+}

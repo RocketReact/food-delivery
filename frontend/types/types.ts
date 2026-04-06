@@ -44,8 +44,3 @@ export type CartItem = {
   image?: string
 }
 
-export type SearchOrdersProps = {
-  _id: string
-  email: string
-  phone: string
-}

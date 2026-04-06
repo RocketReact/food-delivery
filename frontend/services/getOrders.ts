@@ -1,5 +1,6 @@
-import { CartItem, SearchOrdersProps } from '../types/types'
+import { CartItem } from '../types/types'
 import { OrderForm } from '../app/cart/page'
+import { OrderFind } from '../app/orders-history/page'
 
 export type OrdersResProps = {
   _id: string
@@ -9,9 +10,7 @@ export type OrdersResProps = {
   created_at: string
 }
 
-export async function getOrders(
-  orderData?: SearchOrdersProps,
-): Promise<OrdersResProps[]> {
+export async function getOrders(orderData?: OrderFind): Promise<OrdersResProps[]> {
   const params = new URLSearchParams()
 
   if (orderData?._id) params.set('_id', orderData._id)
