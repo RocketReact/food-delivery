@@ -44,59 +44,54 @@ export default function OrdersHistory() {
 
   return (
     <div className={styles.mainContainerHistory}>
-      <div>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className={`${css.formCol} ${styles.formReorder}`}
+      >
         <p>Find your order by one of fields below</p>
-        <form onSubmit={handleSubmit(onSubmit)} className={css.formCol}>
-          <div>
-            <input placeholder="Email" {...register('email')} />
-            {errors.email && (
-              <p className={css.error}>{errors.email.message}</p>
-            )}
-          </div>
-          <div>
-            <input placeholder="Phone" {...register('phone')} />
-            {errors.phone && (
-              <p className={css.error}>{errors.phone.message}</p>
-            )}
-          </div>
-
-          <div>
-            <input placeholder="Order ID" {...register('_id')} />
-            {errors._id && <p className={css.error}>{errors._id.message}</p>}
-          </div>
-          <button type="submit" className={css.clearAndSubmitBtn}>
-            Submit
-          </button>
-        </form>
+        <div>
+          <input placeholder="Email" {...register('email')} />
+          {errors.email && <p className={css.error}>{errors.email.message}</p>}
+        </div>
+        <div>
+          <input placeholder="Phone" {...register('phone')} />
+          {errors.phone && <p className={css.error}>{errors.phone.message}</p>}
+        </div>
 
         <div>
-          {orders.map(order => (
-            <div key={order._id}>
-              <p>Order: #{order._id}</p>
-              <p>Created at: {order.created_at}</p>
-              <p>Total order price: {order.totalPrice}</p>
-
-              {order.items.map((i, index) => (
-                <div key={i.productId}>
-
-                  <div className={styles.imageWrapper}>
-                    <Image
-                      src={i.image || '/placeholder.png'}
-                      fill
-                      sizes="(min-width: 768px) 50vw"
-                      alt={i.name}
-                      priority={index < 3}
-                      style={{ objectFit: 'cover', borderRadius: '8px' }}
-                    />
-                  </div>
-                  <p>{i.name}</p>
-                  <p className={css.price}>{i.price}$</p>
-                </div>
-              ))}
-            </div>
-          ))}
-
+          <input placeholder="Order ID" {...register('_id')} />
+          {errors._id && <p className={css.error}>{errors._id.message}</p>}
         </div>
+        <button type="submit" className={css.clearAndSubmitBtn}>
+          Submit
+        </button>
+      </form>
+
+      <div>
+        {orders.map(order => (
+          <div key={order._id} className={css.itemInCart}>
+            <p>Order: #{order._id}</p>
+            <p>Created at: {order.created_at}</p>
+            <p>Total order price: {order.totalPrice}</p>
+
+            {order.items.map((i, index) => (
+              <div key={i._id} className={css.itemInCard}>
+                <div className={styles.imageWrapper}>
+                  <Image
+                    src={i.image || '/placeholder.png'}
+                    fill
+                    sizes="(min-width: 768px) 50vw"
+                    alt={i.name}
+                    priority={index < 3}
+                    style={{ objectFit: 'cover', borderRadius: '8px' }}
+                  />
+                </div>
+                <p>{i.name}</p>
+                <p className={css.price}>{i.price}$</p>
+              </div>
+            ))}
+          </div>
+        ))}
       </div>
     </div>
   )

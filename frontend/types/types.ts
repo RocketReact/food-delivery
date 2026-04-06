@@ -37,6 +37,7 @@ export type Product = {
 }
 
 export type CartItem = {
+  _id: string
   productId: string
   name: string
   price: number

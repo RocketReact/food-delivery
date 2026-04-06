@@ -72,7 +72,7 @@ export default function Cart() {
         ) : (
           <>
             {items.map((i, index) => (
-              <div className={css.itemInCard} key={i.productId}>
+              <div key={i.productId} className={css.itemInCard}>
                 <Image
                   src={i.image || '/placeholder.png'}
                   alt={i.name}
@@ -107,9 +107,15 @@ export default function Cart() {
                       value={inputValues[i.productId] ?? i.quantity}
                       onChange={e => {
                         const raw = e.target.value
-                        setInputValues(prev => ({ ...prev, [i.productId]: raw }))
+                        setInputValues(prev => ({
+                          ...prev,
+                          [i.productId]: raw,
+                        }))
                         const val = parseInt(raw)
-                        updateQuantity(i.productId, !isNaN(val) && val > 0 ? val : 0)
+                        updateQuantity(
+                          i.productId,
+                          !isNaN(val) && val > 0 ? val : 0,
+                        )
                       }}
                       onBlur={() => {
                         const val = parseInt(inputValues[i.productId])

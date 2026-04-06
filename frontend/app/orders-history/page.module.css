@@ -1,9 +1,19 @@
 .mainContainerHistory {
     min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 0 1rem;
 }
 
 .imageWrapper {
     position: relative;
     width: 100%;
     aspect-ratio: 3/2;
+}
+
+.formReorder {
+    max-width: 522px;
+    width: 100%;
 }
