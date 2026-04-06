@@ -29,6 +29,9 @@ export default function Header() {
           <li className={pathname === '/cart' ? css.active : ''}>
             <Link href="/cart">Shopping Cart</Link>
           </li>
+          <li className={pathname === '/orders-history' ? css.active : ''}>
+            <Link href="/orders-history">History</Link>
+          </li>
         </ul>
 
         <Link href="/cart" className={css.cart} aria-label="Shopping cart">
