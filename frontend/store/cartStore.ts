@@ -1,22 +1,14 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
+import { CartItem } from '../types/types'
 
-type CartItem = {
-  productId: string,
-  name: string,
-  price: number,
-  quantity: number,
-  image?: string,
-}
-
-type CartStore = {
-  items: CartItem[],
-  addToCart: (item: CartItem) => void,
-  removeFromCart: (productId: string) => void,
-  updateQuantity: (productId: string, quantity: number) => void,
+export type CartStore = {
+  items: CartItem[]
+  addToCart: (item: CartItem) => void
+  removeFromCart: (productId: string) => void
+  updateQuantity: (productId: string, quantity: number) => void
   clearCart: () => void
 }
-
 export const useCartStore = create<CartStore>()(
   persist(
     (set) => ({
@@ -39,6 +31,6 @@ export const useCartStore = create<CartStore>()(
       })),
       clearCart: () => set({ items: [] }),
     }),
-    { name: 'cart' }
-  )
+    { name: 'cart' },
+  ),
 )

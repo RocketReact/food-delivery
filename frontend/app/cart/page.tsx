@@ -15,7 +15,7 @@ const orderSchema = z.object({
   address: z.string().min(5, { error: 'Min 5 characters' }),
 })
 
-type OrderForm = z.infer<typeof orderSchema>
+export type OrderForm = z.infer<typeof orderSchema>
 
 export default function Cart() {
   const items = useCartStore(s => s.items)
