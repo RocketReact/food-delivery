@@ -82,11 +82,11 @@ export default function OrdersHistory() {
                     >
                         <p>
                             Order ID: &nbsp;
-                            <span className={styles.idCreatedAt}>{order._id}</span>
+                            <span className={styles.paragraphHistoryItems}>{order._id}</span>
                         </p>
                         <p>
                             Created at:&nbsp;
-                            <span className={styles.idCreatedAt}>
+                            <span className={styles.paragraphHistoryItems}>
                   {order.created_at.slice(0, 10)}
                 </span>
                         </p>
@@ -103,15 +103,15 @@ export default function OrdersHistory() {
                                     />
                                 </div>
                                 <div className={styles.p}>
-                                    <p>{i.name}</p>
-                                    <p>Quantity: {i.quantity}</p>
-                                    <p className={css.price}>{i.price}$</p>
+                                    <p className={styles.paragraphHistoryItems}>{i.name}</p>
+                                    <p className={styles.paragraphHistoryItems}>Quantity: {i.quantity}</p>
+                                    <p className={styles.paragraphHistoryItems}>{i.price}$</p>
                                 </div>
                             </div>
                         ))}
                         <p className={styles.totalOrderPrice}>
                             Total order price:&nbsp;
-                            <span className={styles.idCreatedAt}>
+                            <span className={styles.paragraphHistoryItems}>
                   {order.totalPrice} ${' '}
                 </span>
                         </p>
