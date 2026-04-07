@@ -121,11 +121,6 @@
 }
 
 @media (min-width: 1024px) {
-    .logoDiv {
-        position: static;
-        transform: none;
-    }
-
     .cart {
         display: none;
     }
