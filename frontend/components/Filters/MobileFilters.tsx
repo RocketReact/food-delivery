@@ -6,6 +6,7 @@ import { buildHref } from '../../utils/buildHref'
 import { useState } from 'react'
 import { FiChevronDown } from 'react-icons/fi'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 // Mobile filter panel — local state applied on "Apply Filters" click
 export default function MobileFilters({
@@ -104,7 +105,8 @@ export default function MobileFilters({
                 name="mobile-filter-rating"
                 value="4"
                 checked={selectedRating === '4'}
-                onChange={() => {}}
+                onChange={() => {
+                }}
                 onClick={() => toggleRating('4')}
               />
               4.0 - 5.0
@@ -116,7 +118,8 @@ export default function MobileFilters({
                 name="mobile-filter-rating"
                 value="3"
                 checked={selectedRating === '3'}
-                onChange={() => {}}
+                onChange={() => {
+                }}
                 onClick={() => toggleRating('3')}
               />
               3.0 - 4.0
@@ -128,7 +131,8 @@ export default function MobileFilters({
                 name="mobile-filter-rating"
                 value="2"
                 checked={selectedRating === '2'}
-                onChange={() => {}}
+                onChange={() => {
+                }}
                 onClick={() => toggleRating('2')}
               />
               2.0 - 3.0
@@ -189,7 +193,8 @@ export default function MobileFilters({
                 name="mobile-sort"
                 value="price_asc"
                 checked={selectedSort === 'price_asc'}
-                onChange={() => {}}
+                onChange={() => {
+                }}
                 onClick={() =>
                   setSelectedSort(prev =>
                     prev === 'price_asc' ? undefined : 'price_asc',
@@ -205,7 +210,8 @@ export default function MobileFilters({
                 name="mobile-sort"
                 value="price_desc"
                 checked={selectedSort === 'price_desc'}
-                onChange={() => {}}
+                onChange={() => {
+                }}
                 onClick={() =>
                   setSelectedSort(prev =>
                     prev === 'price_desc' ? undefined : 'price_desc',
@@ -221,7 +227,8 @@ export default function MobileFilters({
                 name="mobile-sort"
                 value="name_asc"
                 checked={selectedSort === 'name_asc'}
-                onChange={() => {}}
+                onChange={() => {
+                }}
                 onClick={() =>
                   setSelectedSort(prev =>
                     prev === 'name_asc' ? undefined : 'name_asc',
@@ -231,6 +238,13 @@ export default function MobileFilters({
               Name A→Z
             </label>
           </div>
+          <Link
+            className={css.mobileShopLink}
+            onClick={() => onCloseAction?.()}
+            href="/orders-history"
+          >
+            Orders history
+          </Link>
         </div>
       </div>
       <button onClick={applyFilters} className={css.btnApply}>
