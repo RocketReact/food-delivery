@@ -67,7 +67,7 @@ export default function Cart() {
         {items.length === 0 ? (
           <>
             <p>Cart is empty</p>
-            <p>Please Add to cart first</p>
+            <p>Please Add products to cart first</p>
           </>
         ) : (
           <>
