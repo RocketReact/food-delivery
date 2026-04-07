@@ -247,14 +247,14 @@ export default function MobileFilters({
         Clear Filters
       </button>
       <Link
-        className={`${css.mobileShopLink} ${css.btnHistory}`}
+        className={css.mobileShopLink}
         onClick={() => onCloseAction?.()}
         href="/orders-history"
       >
         Orders history
       </Link>
       <Link
-        className={css.mobileShopLink}
+        className={`${css.mobileShopLink} ${css.btnCoupon}`}
         onClick={() => onCloseAction?.()}
         href="/coupons"
       >

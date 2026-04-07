@@ -57,11 +57,11 @@
     color: #fff;
 }
 
-.btnHistory {
+.btnCoupon {
     background: #6ada8e;
 }
 
-.btnHistory:hover {
+.btnCoupon:hover {
     background: #a4dfb7;
 }
 
