@@ -46,6 +46,11 @@
 .totalOrderPrice {
 }
 
+.p {
+    width: 100%;
+    text-align: center;
+}
+
 @media (min-width: 768px) {
     .mainContItemInCartHistory {
         column-count: 2;

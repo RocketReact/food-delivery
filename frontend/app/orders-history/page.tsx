@@ -9,15 +9,15 @@ import {getOrders, OrdersResProps} from '../../services/getOrders'
 import {useState} from 'react'
 import Image from 'next/image'
 
-
-const orderFindSchema = z.object({
-    _id: z.string().min(10).or(z.literal('')),
-    email: z.union([z.email({error: 'Invalid email'}), z.literal('')]),
-    phone: z.string().min(7, {error: 'Invalid phone'}).or(z.literal('')),
-}).refine(
-    ({_id, email, phone}) => _id || email || phone,
-    {message: 'Fill at least one field'},
-)
+const orderFindSchema = z
+    .object({
+        _id: z.string().min(10).or(z.literal('')),
+        email: z.union([z.email({error: 'Invalid email'}), z.literal('')]),
+        phone: z.string().min(7, {error: 'Invalid phone'}).or(z.literal('')),
+    })
+    .refine(({_id, email, phone}) => _id || email || phone, {
+        message: 'Fill at least one field',
+    })
 
 export type OrderFind = z.infer<typeof orderFindSchema>
 //
@@ -102,8 +102,11 @@ export default function OrdersHistory() {
                                         style={{objectFit: 'cover', borderRadius: '8px'}}
                                     />
                                 </div>
-                                <p>{i.name}</p>
-                                <p className={css.price}>{i.price}$</p>
+                                <div className={styles.p}>
+                                    <p>{i.name}</p>
+                                    <p>Quantity: {i.quantity}</p>
+                                    <p className={css.price}>{i.price}$</p>
+                                </div>
                             </div>
                         ))}
                         <p className={styles.totalOrderPrice}>
