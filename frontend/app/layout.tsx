@@ -10,6 +10,9 @@ import { Toaster } from 'react-hot-toast'
 export const metadata: Metadata = {
   title: 'Food Delivery',
   description: 'Order food online any time',
+  openGraph: {
+    images: ['/og-image.png'],
+  },
 }
 
 export const viewport: Viewport = {
