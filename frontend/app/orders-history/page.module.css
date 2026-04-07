@@ -46,17 +46,21 @@
 }
 
 .totalOrderPrice {
-    margin-top: auto;
 }
 
 @media (min-width: 768px) {
     .mainContItemInCartHistory {
         display: grid;
-        gap: 3rem;
+        gap: 4rem;
         padding: 0 1rem;
         grid-template-columns: 1fr 1fr;
         width: 100%;
-        align-content: start;
+        align-items: start;
+    }
+
+    .imageWrapper {
+        width: 300px;
+        flex-shrink: 0;
     }
 
     .submitHistoryBtn {
