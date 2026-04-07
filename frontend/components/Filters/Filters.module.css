@@ -47,6 +47,14 @@
     cursor: pointer;
 }
 
+.btnHistory {
+    background: #6ada8e;
+}
+
+.btnHistory:hover {
+    background: #a4dfb7;
+}
+
 .btnApply {
     border: none;
     width: 100%;

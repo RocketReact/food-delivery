@@ -248,7 +248,7 @@ export default function MobileFilters({
         Clear Filters
       </button>
       <Link
-        className={css.mobileShopLink}
+        className={`${css.mobileShopLink} ${css.btnHistory}`}
         onClick={() => onCloseAction?.()}
         href="/orders-history"
       >
