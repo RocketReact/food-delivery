@@ -5,21 +5,124 @@
     width: 100%;
     min-height: 100dvh;
     padding: 1rem 1rem 2rem 1rem;
+    align-content: start;
 }
 
 .mainContainerCoupons > li {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
     height: 250px;
-    background: #eae8e8;
     border-radius: 15px;
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+    text-align: center;
+    padding: 1.5rem;
+    box-shadow: 0 8px 24px rgba(223, 39, 39, 0.25);
+    isolation: isolate;
+}
+
+.mainContainerCoupons > li::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    z-index: -1;
+}
+
+.mainContainerCoupons > li::after {
+    content: '';
+    position: absolute;
+    bottom: -60px;
+    left: -60px;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.07);
+    z-index: -1;
+}
+
+.coupon1 {
+    background: linear-gradient(135deg, #ff5757 0%, #df2727 55%, #8b0000 100%);
+}
+
+.coupon2 {
+    background: linear-gradient(135deg, #df2727 0%, #a30b0b 100%);
+}
+
+.coupon3 {
+    background: linear-gradient(135deg, #ff6b6b 0%, #df2727 50%, #6b0000 100%);
+}
+
+.couponBadge {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    padding: 0.25rem 0.75rem;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 999px;
+    backdrop-filter: blur(4px);
+}
+
+.couponDiscount {
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+}
+
+.couponTitle {
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0.95;
+}
+
+.couponCode {
+    margin-top: 0.5rem;
+    padding: 0.45rem 1.1rem;
+    font-family: ui-monospace, monospace;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    color: inherit;
+    background: transparent;
+    border: 1px dashed rgba(255, 255, 255, 0.7);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.couponCode:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.couponCode:active {
+    transform: scale(0.97);
+}
+
+.couponHint {
+    margin-top: 0.35rem;
+    font-size: 0.6rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.75;
 }
 
 @media (min-width: 768px) {
     .mainContainerCoupons {
         grid-template-columns: repeat(2, 1fr);
-        row-gap: 0;
+        row-gap: 2rem;
     }
 }
 
