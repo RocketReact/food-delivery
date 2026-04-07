@@ -33,7 +33,7 @@
 }
 
 .submitHistoryBtn {
-    margin-bottom: 1rem;
+    margin-bottom: 3rem;
 }
 
 .idCreatedAt {
@@ -41,8 +41,6 @@
 }
 
 .itemInCartHistory {
-    display: flex;
-    flex-direction: column;
 }
 
 .totalOrderPrice {
@@ -50,12 +48,17 @@
 
 @media (min-width: 768px) {
     .mainContItemInCartHistory {
-        display: grid;
-        gap: 4rem;
+        column-count: 2;
+        column-gap: 4rem;
         padding: 0 1rem;
-        grid-template-columns: 1fr 1fr;
         width: 100%;
-        align-items: start;
+    }
+
+    .itemInCartHistory {
+        break-inside: avoid;
+        -webkit-column-break-inside: avoid;
+        page-break-inside: avoid;
+        padding-bottom: 3rem;
     }
 
     .imageWrapper {
