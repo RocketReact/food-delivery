@@ -8,6 +8,7 @@ import {useCartStore} from '../../store/cartStore'
 import {getOrders, OrdersResProps} from '../../services/getOrders'
 import {useState} from 'react'
 import Image from 'next/image'
+import toast from 'react-hot-toast'
 
 const orderFindSchema = z
     .object({
@@ -23,23 +24,20 @@ export type OrderFind = z.infer<typeof orderFindSchema>
 //
 export default function OrdersHistory() {
     const [orders, setOrders] = useState<OrdersResProps[]>([])
-    const [loading, setLoading] = useState(false)
-    const saved = useCartStore(s => s.items)
+    const addManyToCart = useCartStore(s => s.addManyToCart)
+
+
     const {
         register,
         handleSubmit,
-        watch,
         formState: {errors},
     } = useForm<OrderFind>({
         resolver: zodResolver(orderFindSchema),
     })
-    const formValues = watch()
 
     const onSubmit = async (data: OrderFind) => {
-        setLoading(true)
         const result = await getOrders(data)
         setOrders(result)
-        setLoading(false)
     }
 
     return (
@@ -115,12 +113,21 @@ export default function OrdersHistory() {
                                 </div>
                             </div>
                         ))}
-                        <p className={styles.totalOrderPrice}>
-                            Total order price:&nbsp;
-                            <span className={styles.paragraphHistoryItems}>
-                  {order.totalPrice} ${' '}
-                </span>
-                        </p>
+                        <div className={styles.totalRow}>
+                            <p>
+                                Total order price:&nbsp;
+                                <span className={styles.paragraphHistoryItems}>
+                    {order.totalPrice} $
+                  </span>
+                            </p>
+                            <button
+                                onClick={() => {
+                                    addManyToCart(order.items)
+                                    toast.success('Order added to cart')
+                                }}
+                                className={css.clearAndSubmitBtn}>Reorder
+                            </button>
+                        </div>
                         <span className={styles.bottomLineHistory}></span>
                     </div>
                 ))}

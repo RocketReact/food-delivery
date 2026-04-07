@@ -40,11 +40,6 @@
     font-weight: 600;
 }
 
-.itemInCartHistory {
-}
-
-.totalOrderPrice {
-}
 
 .orderIdCreatAt {
     margin-bottom: 1rem;
@@ -53,6 +48,14 @@
 .p {
     width: 100%;
     text-align: center;
+}
+
+.totalRow {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
 }
 
 @media (min-width: 768px) {

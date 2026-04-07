@@ -23,7 +23,17 @@ export async function getOrders(orderData?: OrderFind): Promise<OrdersResProps[]
     const res = await fetch(url, {
       cache: 'no-cache',
     })
-    if (res.ok) return res.json()
+    if (res.ok) {
+      const data = await res.json()
+      return data.map((order: any) => ({
+        ...order,
+        items: order.items.map(({ id, _id, ...rest }: any) => ({
+          ...rest,
+          productId: id,
+          _id: _id ?? id,
+        })),
+      }))
+    }
     console.error('Failed to fetch orders', res.status)
     return []
   } catch (error) {
