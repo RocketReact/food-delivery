@@ -238,7 +238,6 @@ export default function MobileFilters({
               Name A→Z
             </label>
           </div>
-
         </div>
       </div>
       <button onClick={applyFilters} className={css.btnApply}>
@@ -253,6 +252,13 @@ export default function MobileFilters({
         href="/orders-history"
       >
         Orders history
+      </Link>
+      <Link
+        className={css.mobileShopLink}
+        onClick={() => onCloseAction?.()}
+        href="/coupons"
+      >
+        Coupons
       </Link>
     </div>
   )
