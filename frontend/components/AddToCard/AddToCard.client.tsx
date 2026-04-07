@@ -16,6 +16,7 @@ export default function AddToCard({
       className={className}
       onClick={() => {
         addToCart({
+          _id: product._id,
           productId: product._id,
           name: product.name,
           price: product.price,
