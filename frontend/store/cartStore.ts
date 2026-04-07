@@ -8,6 +8,7 @@ export type CartStore = {
   removeFromCart: (productId: string) => void
   updateQuantity: (productId: string, quantity: number) => void
   clearCart: () => void
+  addManyToCart: (newItems: CartItem[]) => void
 }
 export const useCartStore = create<CartStore>()(
   persist(
@@ -30,6 +31,15 @@ export const useCartStore = create<CartStore>()(
         items: state.items.map(i => i.productId === productId ? { ...i, quantity } : i),
       })),
       clearCart: () => set({ items: [] }),
+      addManyToCart: (newItems: CartItem[]) => set(state => {
+        const map = new Map(state.items.map(i => [i.productId, { ...i }]))
+        for (const item of newItems) {
+          const existing = map.get(item.productId)
+          if (existing) existing.quantity += item.quantity
+          else map.set(item.productId, { ...item })
+        }
+        return { items: Array.from(map.values()) }
+      }),
     }),
     { name: 'cart' },
   ),
