@@ -80,16 +80,20 @@ export default function OrdersHistory() {
                         key={order._id}
                         className={`${css.itemInCart} ${styles.itemInCartHistory}`}
                     >
-                        <p>
-                            Order ID: &nbsp;
-                            <span className={styles.paragraphHistoryItems}>{order._id}</span>
-                        </p>
-                        <p>
-                            Created at:&nbsp;
-                            <span className={styles.paragraphHistoryItems}>
-                  {order.created_at.slice(0, 10)}
-                </span>
-                        </p>
+                        <div className={styles.orderIdCreatAt}>
+                            <p>
+                                Order ID: &nbsp;
+                                <span className={styles.paragraphHistoryItems}>
+                    {order._id}
+                  </span>
+                            </p>
+                            <p>
+                                Created at:&nbsp;
+                                <span className={styles.paragraphHistoryItems}>
+                    {order.created_at.slice(0, 10)}
+                  </span>
+                            </p>
+                        </div>
                         {order.items.map((i, index) => (
                             <div key={i._id} className={css.itemInCard}>
                                 <div className={styles.imageWrapper}>
@@ -104,7 +108,9 @@ export default function OrdersHistory() {
                                 </div>
                                 <div className={styles.p}>
                                     <p className={styles.paragraphHistoryItems}>{i.name}</p>
-                                    <p className={styles.paragraphHistoryItems}>Quantity: {i.quantity}</p>
+                                    <p className={styles.paragraphHistoryItems}>
+                                        Quantity: {i.quantity}
+                                    </p>
                                     <p className={styles.paragraphHistoryItems}>{i.price}$</p>
                                 </div>
                             </div>
