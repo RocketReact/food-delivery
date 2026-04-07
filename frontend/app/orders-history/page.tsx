@@ -106,7 +106,7 @@ export default function OrdersHistory() {
                                 <p className={css.price}>{i.price}$</p>
                             </div>
                         ))}
-                        <p>
+                        <p className={styles.totalOrderPrice}>
                             Total order price:&nbsp;
                             <span className={styles.idCreatedAt}>
                   {order.totalPrice} ${' '}

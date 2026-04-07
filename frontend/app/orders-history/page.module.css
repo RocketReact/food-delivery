@@ -39,3 +39,27 @@
 .idCreatedAt {
     font-weight: 600;
 }
+
+.itemInCartHistory {
+    display: flex;
+    flex-direction: column;
+}
+
+.totalOrderPrice {
+    margin-top: auto;
+}
+
+@media (min-width: 768px) {
+    .mainContItemInCartHistory {
+        display: grid;
+        gap: 3rem;
+        padding: 0 1rem;
+        grid-template-columns: 1fr 1fr;
+        width: 100%;
+        align-content: start;
+    }
+
+    .submitHistoryBtn {
+        margin-bottom: 2rem;
+    }
+}
