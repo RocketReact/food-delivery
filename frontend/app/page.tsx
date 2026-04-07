@@ -7,6 +7,7 @@ import { getShops } from '../services/getShops'
 import { getProducts } from '../services/getProducts'
 import { getCategories } from '../services/getCategories'
 import Pagination from '../components/Pagination/Pagination.client'
+import AddToCard from '../components/AddToCard/AddToCard.client'
 
 export default async function Home({
                                      searchParams,
@@ -59,7 +60,7 @@ export default async function Home({
                 </div>
                 <p>{product.name}</p>
                 <p className={css.price}>{product.price}$</p>
-                <ProductCard product={product} className={css.buyBtn} />{' '}
+                <AddToCard product={product} className={css.buyBtn} />{' '}
               </div>
             ))
           ) : (
