@@ -17,3 +17,25 @@
     max-width: 522px;
     width: 100%;
 }
+
+.mainContItemInCartHistory {
+    width: 100%;
+}
+
+.bottomLineHistory {
+    display: block;
+    width: 100%;
+    height: 0.07rem;
+    margin: 1rem 0;
+    background: #f60606;
+    filter: blur(0.03rem);
+    opacity: 0.8;
+}
+
+.submitHistoryBtn {
+    margin-bottom: 1rem;
+}
+
+.idCreatedAt {
+    font-weight: 600;
+}
