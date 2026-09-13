@@ -1,6 +1,7 @@
 export async function getCategories(): Promise<string[]> {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_URL_SERVER}/products/categories`, { cache: 'no-cache' })
+    console.log(res)
     if (res.ok) return res.json()
     return []
   } catch (error) {
