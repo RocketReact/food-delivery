@@ -32,7 +32,7 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
-frontend/.env.production
+
 
 # vercel
 .vercel
@@ -47,4 +47,3 @@ backend/.env
 backend/dist/
 backend/build/
 backend/logs/
-*.log
